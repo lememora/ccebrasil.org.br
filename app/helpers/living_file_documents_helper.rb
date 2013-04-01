@@ -1,0 +1,2 @@
+module LivingFileDocumentsHelper
+end

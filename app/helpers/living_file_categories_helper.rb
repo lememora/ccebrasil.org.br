@@ -1,0 +1,2 @@
+module LivingFileCategoriesHelper
+end

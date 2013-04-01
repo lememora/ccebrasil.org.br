@@ -1,0 +1,17 @@
+<div id="attribute_item" class="attribute_item">
+	<% fields_for "program[generic_attributes][]", program_generic_attribute do |f| %>
+		Titulo<br/>
+		<%= f.text_field :title, :index => nil %><br/>
+		Texto<br/>
+		<%= f.text_field :desc, :index => nil %><br/>
+		Url<br/>
+		<%= f.text_field :url, :index => nil %><br/>
+		<% if program_generic_attribute.new_record? %>
+			<%= link_to_function "Apagar", "mark_program_generic_attribute_for_destroy_now(this)" %>			
+		<% else %>
+			<%= link_to_function "Apagar", "mark_program_generic_attribute_for_destroy(this)" %>
+			<%= f.hidden_field :id, :index => nil %>
+			<%= f.hidden_field :should_destroy, :index => nil, :class => "should_destroy"%>
+		<% end %>
+	<% end %>
+</div>

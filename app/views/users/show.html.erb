@@ -1,0 +1,110 @@
+<h1>Usuários</h1>
+
+<p>
+  <b>Nome:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <b>Área de atuação:</b>
+  <%=h @user.activity %>
+</p>
+
+<p>
+  <b>Deseja:</b>
+  <%=h @user.deseja_receber %>
+</p>
+
+<p>
+  <b>Endereço Residencial:</b>
+  <%=h @user.endereco_residencial %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%=h @user.bairro_residencial %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%=h @user.cidade_residencial %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%=h @user.uf_residencial %>
+</p>
+
+<p>
+  <b>CEP:</b>
+  <%=h @user.cep_residencial %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%=h @user.phone_1_kind %> - <%=h @user.phone_1_number %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%=h @user.phone_2_kind %> - <%=h @user.phone_2_number %>
+</p>
+
+<p>
+  <b>Homepage:</b>
+  <%=h @user.homepage %>
+</p>
+
+<p>
+  <b>Atividade Profissional:</b>
+  <%=h @user.atividade_profissional %>
+</p>
+
+<p>
+  <b>Empresa:</b>
+  <%=h @user.empresa %>
+</p>
+
+<p>
+  <b>Endereço Comercial:</b>
+  <%=h @user.endereco_comercial %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%=h @user.bairro_comercial %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%=h @user.cidade_comercial %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%=h @user.uf_comercial %>
+</p>
+
+<p>
+  <b>CEP:</b>
+  <%=h @user.cep_comercial %>
+</p>
+
+<p>
+  <b>Cargo na Empresa:</b>
+  <%=h @user.cargo_na_empresa %>
+</p>
+
+<p>
+  <b>Área Atuçãoo da Empresa:</b>
+  <%=h @user.area_atuacao_da_empresa %>
+</p>
+
+
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Voltar', users_path %>

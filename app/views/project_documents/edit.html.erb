@@ -1,0 +1,13 @@
+<h1><%= @project.title %> :: Documentos</h1>
+
+<% form_for([@project, @project_document], :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => { :f => f } %>
+  	
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', project_project_documents_path(@project) %>

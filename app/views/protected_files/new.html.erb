@@ -1,0 +1,13 @@
+<h1>Arquivos Protegidos :: Novo</h1>
+
+<% form_for(@protected_file, :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => "form", :locals => { :f => f } %>
+
+  <p>
+    <%= f.submit 'Criar', :disable_with => "Criando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', protected_files_path %>

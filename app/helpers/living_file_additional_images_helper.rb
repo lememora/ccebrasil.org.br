@@ -1,0 +1,2 @@
+module LivingFileAdditionalImagesHelper
+end

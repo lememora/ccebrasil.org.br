@@ -1,0 +1,28 @@
+<h1><%= @project.title %> :: Links</h1>
+
+<table>
+  <tr>
+    <th>Posição</th>
+	<th>Categoria</th>
+	<th>Título</th>
+  </tr>
+
+<% @project_links.each do |project_link| %>
+  <tr>
+    <td>
+		<%= link_to 'Up', "/projects/#{@project.id}/project_links/#{project_link.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/projects/#{@project.id}/project_links/#{project_link.id}/lower", :method => :put %>
+	</td>
+    <td><%=h project_link.categ %></td>
+    <td><%=h project_link.title %></td>
+    <td><%= link_to 'Editar', edit_project_project_link_path(@project, project_link) %></td>
+    <td><%= link_to 'Remover', [@project, project_link], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo link', new_project_project_link_path(@project) %>
+<br/><br/>
+<%= link_to 'Voltar para o projeto', @project %>

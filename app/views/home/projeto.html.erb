@@ -1,0 +1,175 @@
+<body class="projetos">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_projetos" class="umalinha" title="Projetos">Projetos<span>&nbsp;</span></h2>
+			<h3>Conheça os projetos e os âmbitos de ação do CCE_SP</h3>
+			<p>Atuam sob 3 âmbitos principais: Cultura e Desenvolvimento, Cooperação cultural e científica e Promoção e ação cultural exterior. Com esse intuito são desenvolvidos parcerias e apoios que promovem a pluralidade cultural.</p>
+			<p><strong>Para conhecer os projetos e ter acesso às suas documentações, escolha abaixo um âmbito de ação.</strong></p>
+			<ul id="proj_tipos">
+				<li class="proj_cult">
+					<a href="/projetos/categoria/<%= @project_categories[0].permalink %>">
+						<strong><%= @project_categories[0].title %></strong>
+						<span class="tdm"><%= @project_categories[0].description %></span>
+					</a>
+				</li>
+				<li class="proj_coop">
+					<a href="/projetos/categoria/<%= @project_categories[1].permalink %>">
+						<strong><%= @project_categories[1].title %></strong>
+						<span class="tdm"><%= @project_categories[1].description %></span>
+					</a>
+					</a>
+				</li>
+				<li class="proj_promo">
+					<a href="/projetos/categoria/<%= @project_categories[2].permalink %>">
+						<strong><%= @project_categories[2].title %></strong>
+						<span class="tdm"><%= @project_categories[2].description %></span>
+					</a>
+				</li>
+				<li class="proj_todos">
+					<a href="/projetos">
+						<strong>veja todos os projetos</strong>
+					</a>
+				</li>
+			</ul>
+			
+		</div>
+		
+		<div id="column" class="proj_coop">
+				<!-- H2: sFIR -->
+				<h2><%= @project.title %></h2>
+				<% unless @project.project_image.url == "/project_images/original/missing.png" -%>
+					<div class="noticias_box_fotos">
+						<%= image_tag @project.project_image.url(:final), :alt => "#{@project.title}", :title => "#{@project.title}" %>
+						<% unless @project.image_credits.blank? -%>
+							<p class="legenda"><%= @project.image_credits %></p>
+						<% end -%>
+					</div>
+				<% end -%>
+
+				<div class="subcoluna subcoluna50_esq">
+					<h3>sobre o projeto</h3>
+					<p><%= @project.description %></p>
+				</div>
+
+				<div class="subcoluna subcoluna50_dir">
+					
+					<% unless @project.project_texts.empty? and @project.project_texts.empty? and @project.project_additional_images.empty? and @project.project_videos.empty? and @project.project_links.empty? -%>
+						<h3>links relacionados</h3>
+					<% end -%>
+					<!-- =============================== LINKS COM ICONES ================================= -->
+					<!-- Basta deixar dentro de um <p class="ico_projs"> e com a class correspondente -->
+					<!--
+					<p class="ico_projs">
+						<a href="#" class="ico_projs_texto" title="texto crítico">texto crítico</a>
+						<a href="#" class="ico_projs_video" title="vídeo">vídeo</a>
+						<a href="#" class="ico_projs_fotos" title="fotos">fotos</a>
+						<a href="#" class="ico_projs_catalogo" title="catálogo">catálogo</a>
+					</p>
+					-->					
+					
+					<% unless @project.project_texts.empty? -%>
+						<h4>_textos</h4>
+						<!-- =============================== TEXTOS ================================= -->
+						<ul>
+							<% @project.project_texts.each do |text| -%>
+								<li><a href="<%= text.prj_txt.url %>"><%= text.title %></a></li>
+							<% end -%>
+						</ul>
+					<% end -%>	
+					
+					<% unless @project.project_documents.empty? -%>
+						<h4>_documentos</h4>
+						<!-- =============================== DOCUMENTOS ================================= -->
+						<ul>
+							<% @project.project_documents.each do |document| -%>
+								<li><a href="<%= document.prj_doc.url %>"><%= document.title %></a></li>
+							<% end -%>
+						</ul>
+					<% end -%>	
+					
+					<% unless @project.project_audios.empty? -%>
+						<h4>_audios</h4>
+						<!-- =============================== AUDIO ================================= -->
+						<ul>
+							<% @project.project_audios.each do |audio| -%>
+								<!--<li><a href="<%= audio.prj_audio.url %>"><%= audio.title %></a></li>-->
+								<li>
+									<div id="player_<%= audio.id %>"><%=h audio.title %></div>
+								</li>
+								<script type="text/javascript">
+									// <![CDATA[
+									//carrega o flash
+									var so = new SWFObject("/images/cce_player.swf?file=<%=h audio.prj_audio.url %>&file_name=<%=h audio.title %>&ok", "cce_player", '266', '28', "8", "#ffffff", '100%');
+									so.addParam("quality", "high");
+									so.addParam("wmode", "transparent");
+									so.addParam("salign", "t");
+									so.write("player_<%= audio.id %>");
+									// ]]>
+								</script>
+							<% end -%>
+						</ul>
+					<% end -%>			
+					
+					<% unless @project.project_additional_images.empty? -%>
+						<h4>_galeria de imagens</h4>
+						<p>
+						<!-- =============================== GALERIA JQUERY ================================= -->					
+							<ul class="galeria_lista">
+								<% @project.project_additional_images.each do |image| -%>
+									<li><a href="<%= image.prj_add_image.url %>" class="galeria_item"><img src="<%= image.prj_add_image.url(:thumb) %>" alt="<%= image.title %>" title="<%= image.title %>" /></a></li>
+								<% end -%>	
+							</ul>
+						</p>
+					<% end -%>
+
+					<!-- =============================== DIV CLEAR: usado para corrigir formatação ================================= -->
+					<div class="clear"></div>					
+					
+					<% unless @project.project_videos.empty? -%>
+						<h4>_vídeo</h4>
+						<!-- =============================== VIDEOS ================================= -->
+						<% @project.project_videos.each do |video| -%>
+							<p><%= video.embed %></p>
+						<% end -%>
+					<% end -%>
+					
+					<% unless @project.project_links.empty? -%>	
+						<% 
+							atual = 0
+							total = @project.project_links.size
+							categ_atual = ""
+						%>
+						<% @project.project_links.each do |link| -%>  							
+							<% if atual == 0 -%>
+								<h4><%= link.categ %></h4>
+									<ul>
+							<% else -%>
+								<% unless link.categ == categ_atual -%>
+										</ul>
+									<h4><%= link.categ %></h4>
+										<ul>
+								<% end -%>	
+							<% end -%>							
+							<li><a href="<%= link.url %>" target="_blank"><%= link.title %></a></li>							
+							<% categ_atual = link.categ -%>
+							<% atual = atual +1 -%>													
+							<% if atual == total -%>
+								</ul>   
+							<% end -%>							
+						<% end -%>
+					<% end -%>						
+					
+				</div>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

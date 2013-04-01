@@ -1,0 +1,24 @@
+<h1>Usuários - Midiateca</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+  </tr>
+
+<% @medialibrary_users.each do |medialibrary_user| %>
+  <tr>
+    <td><%=h medialibrary_user.name %></td>
+    <td><%=h medialibrary_user.email %></td>
+    <td><%= link_to 'Exibir', medialibrary_user %></td>
+    <td><%= link_to 'Editar', edit_medialibrary_user_path(medialibrary_user) %></td>
+    <td><%= link_to 'Remover', medialibrary_user, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% link_to 'Novo usuário', new_medialibrary_user_path %>
+<br/>
+<%= link_to 'Excel', "/medialibrary_users/excel" %>

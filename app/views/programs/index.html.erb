@@ -1,0 +1,27 @@
+<h1>Programação</h1>
+
+<table>
+  <tr>
+	<th>Posição</th> 
+	<th>Data</th>
+    <th>Título</th>
+  </tr>
+
+<% @programs.each do |program| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/programs/#{program.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/programs/#{program.id}/lower", :method => :put %>
+	</td>
+	<td><%=h "#{program.day}.#{program.month}.#{program.year}" %></td> 
+    <td><%=h program.title %></td>    
+    <td><%= link_to 'Exibir', program %></td>
+    <td><%= link_to 'Editar', edit_program_path(program) %></td>
+    <td><%= link_to 'Remover', program, :confirm => 'Você tem certeza', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo ítem', new_program_path %>

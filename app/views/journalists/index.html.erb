@@ -1,0 +1,22 @@
+<h1>Acessores de Imprensa</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+  </tr>
+
+<% @journalists.each do |journalist| %>
+  <tr>
+    <td><%=h journalist.name %></td>
+    <td><%=h journalist.email %></td>
+    <td><%= link_to 'Exibir', journalist %></td>
+    <td><%= link_to 'Editar', edit_journalist_path(journalist) %></td>
+    <td><%= link_to 'Remover', journalist, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo jornalista', new_journalist_path %>

@@ -1,0 +1,27 @@
+<h1>Projetos</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>    
+    <th>Título</th>
+	<th>Categoria</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td>
+		<%= link_to 'Up', "/projects/#{project.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/projects/#{project.id}/lower", :method => :put %>
+	</td>
+    <td><%=h project.title %></td>
+	<td><%=h project.project_category.title %></td>
+    <td><%= link_to 'Exibir', project %></td>
+    <td><%= link_to 'Editar', edit_project_path(project) %></td>
+    <td><%= link_to 'Remover', project, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo audio', new_project_path %>

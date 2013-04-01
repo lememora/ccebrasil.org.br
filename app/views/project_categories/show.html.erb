@@ -1,0 +1,15 @@
+<h1>Categoria de Projetos :: Novo</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @project_category.title %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%=h @project_category.description %>
+</p>
+
+
+<%= link_to 'Editar', edit_project_category_path(@project_category) %> |
+<%= link_to 'Voltar', project_categories_path %>

@@ -1,0 +1,88 @@
+<body class="links">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_links" class="umalinha" title="Links">Links<span>&nbsp;</span></h2>
+			<h3>CCE_SP em rede</h3>
+			<p>A idéia de rede é muito cara ao CCE_SP, seja no sentido de trabalhar em parceria com instituições e projetos, seja na maneira de pensar o Centro também como um ambiente virtual que acontece na web.</p>
+			<p>Você também é convidado para participar desta rede. Acesse nossos canais online, compartilhe, comente e conheça. </p>
+		</div>
+		
+		<div id="column">
+			<h3>Redes Sociais</h3>			
+			<p>
+				<% @socialnetwork_sites.each do |socialnetwork_site| -%>
+					<a href="<%= socialnetwork_site.url %>" target="_blank" class="link_redes_sociais" style="background-image:url(<%= socialnetwork_site.sn_icon.url(:icon) %>);" title="<%= socialnetwork_site.title %>"><%= socialnetwork_site.title %></a>
+				<% end -%>
+			</p>
+			
+			<h3>Instituições Espanholas</h3>
+			<ul class="lista_ponto">
+				<% @partner_sites.each do |partner_site| -%>
+					<% if partner_site.categ == "Instituições Espanholas" -%>
+						<li>
+							<a href="<%= partner_site.url %>" target="_blank" title="<%= partner_site.title %>">
+								<strong><%= partner_site.title %></strong> <%= partner_site.url %>
+							</a>
+						</li>
+					<% end -%>
+				<% end -%>
+			</ul>
+			
+			<h3>Instituições Espanholas no Brasil</h3>
+			<ul class="lista_ponto">
+				<% @partner_sites.each do |partner_site| -%>
+					<% if partner_site.categ == "Instituições Espanholas no Brasil" -%>
+						<li>
+							<a href="<%= partner_site.url %>" target="_blank" title="<%= partner_site.title %>">
+								<strong><%= partner_site.title %></strong> <%= partner_site.url %>
+							</a>
+						</li>
+					<% end -%>
+				<% end -%>
+			</ul>
+			
+			<h3>Sites de projetos parceiros</h3>
+			<ul class="lista_ponto">
+				<% @partner_sites.each do |partner_site| -%>
+					<% if partner_site.categ == "Sites de projetos parceiros" -%>
+						<li>
+							<a href="<%= partner_site.url %>" target="_blank" title="<%= partner_site.title %>">
+								<strong><%= partner_site.title %></strong> <%= partner_site.url %>
+							</a>
+						</li>
+					<% end -%>
+				<% end -%>
+			</ul>
+			
+			<h3>Instituições Parceiras</h3>
+			<ul class="lista_ponto">
+				<% @partner_sites.each do |partner_site| -%>
+					<% if partner_site.categ == "Instituições Parceiras" -%>
+						<li>
+							<a href="<%= partner_site.url %>" target="_blank" title="<%= partner_site.title %>">
+								<strong><%= partner_site.title %></strong> <%= partner_site.url %>
+							</a>
+						</li>
+					<% end -%>
+				<% end -%>
+			</ul>
+			
+			<h3>Rede AECID de Cooperação Cultural</h3>
+			<ul class="lista_ponto">
+				<% @aecid_sites.each do |aecid_site| -%>
+					<li><a href="<%= aecid_site.url %>" target="_blank" title="<%= "#{aecid_site.title} #{aecid_site.url}" %>"><strong><%= aecid_site.title %></strong> <%= aecid_site.url %></a></li>
+				<% end -%>		
+			</ul>
+
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

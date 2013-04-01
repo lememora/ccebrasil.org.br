@@ -1,0 +1,23 @@
+<h1>Listing program_downloads</h1>
+
+<table>
+  <tr>
+    <th>Mês</th>
+    <th>Ano</th>
+    <th>Arquivo</th>
+  </tr>
+
+<% @program_downloads.each do |program_download| %>
+  <tr>
+    <td><%=h program_download.month %></td>
+    <td><%=h program_download.year %></td>
+    <td><%=h program_download.program_download.url %></td>
+    <td><%= link_to 'Editar', edit_program_download_path(program_download) %></td>
+    <td><%= link_to 'Remover', program_download, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo download', new_program_download_path %>

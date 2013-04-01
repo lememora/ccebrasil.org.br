@@ -1,0 +1,83 @@
+<body class="home">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="destaques">
+		<h2 class="access">Destaques</h2>
+		<ul>
+			<% @programs.each do |program| -%>
+				<li class="vevent">
+					<a href="/programa/<%= program.id %>/<%= program.permalink %>" title="<%= program.title %>">
+						<%= image_tag program.program_image.url(:thumb), :alt => "#{program.title}" %>
+						<span class="dest_box">
+							<strong class="summary"><%= program.title %></strong> <span class="resume"><%= program.subtitle %></span><br />
+							<span class="dtstart"><%= program.when.gsub("\r\n", "<br />") %></span><br />
+							<span class="location"><%= program.where.gsub("\r\n", "<br />") %></span><br />
+							<span class="description"><%= program.extract %></span>
+						</span>
+					</a>
+				</li>
+			<% end -%>			
+		</ul>
+	</div>
+	
+	<div id="chamadas_capa">
+		<div id="box_chamada">
+			<h2><%= @highlight.title %></h2>
+			<a href="<%= @highlight.url %>"><%= image_tag @highlight.highlight_image.url(:thumb), :alt => "#{@highlight.title}" %></a>
+			<p><%= @highlight.subtitle %></p>
+			<p class="link_chamada"><a href="<%= @highlight.url %>"><%= @highlight.link_txt %></a></p>
+			<a href="<%= @highlight.url %>" title="+++++" class="link_mais"><span>+</span> </a>
+		</div>
+		
+		<div id="box_agenda">
+			<h2 id="txt_editais" title="editais">editais<span>&nbsp;</span></h2>
+			<ul>
+				<% @agendas.each do |agenda| -%>
+					<li class="vevent">
+						<h3><a href="<%= agenda.url %>"><%= agenda.title %></a></h3>
+						<a href="<%= agenda.url %>">
+							<span class="dtstart"><%= agenda.when.gsub("\r\n", "<br />") %></span>
+							<span class="location"><%= agenda.where.gsub("\r\n", "<br />") %></span>
+						</a>
+					</li>
+				<% end -%>				
+			</ul>
+			<a href="/bolsas_e_convocatorias" title="+++++" class="link_mais"><span>+</span> </a>
+		</div>
+		
+		<div id="box_midiateca">
+			<h2 id="txt_midiateca_home" title="midiateca">midiateca<span>&nbsp;</span></h2>
+			<% @medialibraries.each do |medialibrary| -%>
+				<h3><%= medialibrary.title %></h3>
+				<ul>				
+					<li>
+						<%= medialibrary.description %>
+						<% unless medialibrary.url.blank? -%>
+							<% if medialibrary.link_txt.blank? -%>
+								<% link_txt = medialibrary.url -%>
+							<% else -%>
+								<% link_txt = medialibrary.link_txt -%>
+							<% end -%>
+							<a href="<%= medialibrary.url %>"><%= link_txt %></a>
+						<% end -%>
+					</li>
+				</ul>
+			<% end -%>
+			<a href="/midiateca" title="+++++" class="link_mais"><span>+</span></a>
+		</div>
+		
+		<div id="box_noticias">
+			<h2 id="txt_noticias" title="notícias">notícias<span>&nbsp;</span></h2>
+			<a href="<%= "noticia/#{@article.permalink}" %>"><%= image_tag @article.article_image.url(:thumb), :alt => "#{@article.title}" %></a>
+			<h3><a href="<%= "noticia/#{@article.permalink}" %>"><%= @article.title %></a></h3>
+			<p><%= @article.subtitle %></p>
+			<a href="/noticias" title="+++++" class="link_mais"><span>+</span> veja todas</a>
+		</div>
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

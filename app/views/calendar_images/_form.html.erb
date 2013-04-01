@@ -1,0 +1,23 @@
+  <p>
+    <%= f.label "Mês" %><br />
+	<%= f.text_field :month, :size => 6 %>
+  </p>
+  <p>
+    <%= f.label "Ano" %><br />
+	<%= f.text_field :year, :size => 6 %>
+  </p>
+  <p>
+    <%= f.label "Créditos" %><br />
+    <%= f.text_field :credits, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label "Url" %><br />
+    <%= f.text_field :url, :size => 62 %>
+  </p>
+  <p>
+	<%= f.label "Imagem" %> <small>[tamanho: 584x278]</small><br/>
+	<% if @calendar_image.calendar_image.exists? then %>
+		<%= image_tag @calendar_image.calendar_image.url(:approved) %><br/>
+	<% end %>
+	<%= f.file_field :calendar_image %>
+  </p>

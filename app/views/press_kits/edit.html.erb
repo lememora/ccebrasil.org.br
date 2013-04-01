@@ -1,0 +1,13 @@
+<h1>Imprensa :: Edição</h1>
+
+<% form_for(@press_kit) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => {:f => f} %>
+  
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', press_kits_path %>

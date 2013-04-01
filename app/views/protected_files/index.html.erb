@@ -1,0 +1,24 @@
+<h1>Arquivos Protegidos</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Downloads</th>
+	<th>Enviar</th>
+  </tr>
+
+<% @protected_files.each do |protected_file| %>
+  <tr>
+    <td><%=h protected_file.name %></td>
+    <td><%=h protected_file.downloads %></td>
+    <td><%= link_to 'Exibir', protected_file %></td>
+    <td><%= link_to 'Editar', edit_protected_file_path(protected_file) %></td>
+	<td><%= link_to 'Enviar arquivo', "/protected_files/enviar_arquivo_protegido/#{protected_file.id}" %></td>
+    <td><%= link_to 'Remover', protected_file, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo arquivo protegido', new_protected_file_path %>

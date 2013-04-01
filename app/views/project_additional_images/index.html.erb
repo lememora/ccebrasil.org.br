@@ -1,0 +1,26 @@
+<h1><%= @project.title %> :: Imagens</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>
+	<th>Imagem</th>
+  </tr>
+
+<% @project_additional_images.each do |project_additional_image| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/projects/#{@project.id}/project_additional_images/#{project_additional_image.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/projects/#{@project.id}/project_additional_images/#{project_additional_image.id}/lower", :method => :put %>
+	</td>
+    <td><%= image_tag project_additional_image.prj_add_image.url(:thumb) %></td>
+    <td><%= link_to 'Editar', edit_project_project_additional_image_path(@project, project_additional_image) %></td>
+    <td><%= link_to 'Remover', [@project, project_additional_image], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova Imagem', new_project_project_additional_image_path(@project) %>
+<br/><br/>
+<%= link_to 'Voltar para o projeto', @project %>

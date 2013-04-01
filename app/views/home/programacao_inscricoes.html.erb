@@ -1,0 +1,142 @@
+<body class="programacao">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_inscricoes" class="umalinha" title="Inscrições">Inscrições<span>&nbsp;</span></h2>
+			<h3>Preencha os campos ao lado e inscreva-se!</h3>
+			
+			<p>Obrigado por se inscrever nas ativvidades do CCESP. Após completar todo o preenchimento, você receberá um email de confirmação da sua inscrição. </p>
+			<p>Em caso de dúvidas ou cancelamento, escreva para <a href="mailto:oficinas@ccebrasil.org.br">oficinas@ccebrasil.org.br</a>.</p>
+			<p>Todos os campos são de preenchimento obrigatório.</p>
+		</div>
+		
+		<div id="column">
+			
+			<%= content_tag(:p, flash[:novo_usuario], :style => "color:red") if flash[:novo_usuario] %>			
+			<% form_for :program_user, :url => { :action => :novo_usuario_programacao, :method => :post }, :html=>{ :onsubmit => "return check_programacao_form();", :id => "programacao_form", :class => "form form_cadastro" } do |f| %>
+				<ul>					
+					<li class="tam_a clear">
+						<label for="insc_nome">+ nome completo <span>*</span></label><br />
+						<%= f.text_field :name, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_nome">+ escolha um programa para se inscrever <span>*</span></label><br />
+						<%= f.select :program, @open_programs, {}, :class => "select" %>	
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_nasc_dia">+ data de nascimento <span>*</span></label>
+						<%= f.text_field :nasc_dia, :class => "ipt_txt tam_f", :maxlength => 2, :value => "dd" %>
+						<%= f.text_field :nasc_mes, :class => "ipt_txt tam_f", :maxlength => 2, :value => "mm" %>
+						<%= f.text_field :nasc_ano, :class => "ipt_txt tam_e", :maxlength => 4, :value => "aaaa" %>
+					</li>
+					<li class="tam_a clear">
+						<label>+ sexo <span>*</span></label>
+						<label for="insc_sexo_m"><input type="radio" id="program_user_sexo" name="program_user[sexo]" class="ipt_radio" value="masculino" /> masculino</label>
+						<label for="insc_sexo_f"><input type="radio" id="program_user_sexo" name="program_user[sexo]" class="ipt_radio" value="feminino" /> feminino</label>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_cpf">+ CPF <span>*</span></label><br />
+						<%= f.text_field :cpf, :class => "ipt_txt tam_c" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_tel_fixo_ddd">+ telefone fixo <span>*</span></label><br />
+						<%= f.text_field :ddd_fixo, :class => "ipt_txt tam_e", :value => "ddd" %>
+						<%= f.text_field :phone_fixo, :class => "ipt_txt tam_d", :value => "número" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_tel_cel_ddd">+ celular <span>*</span></label><br />
+						<%= f.text_field :ddd_celular, :class => "ipt_txt tam_e", :value => "ddd" %>
+						<%= f.text_field :phone_celular, :class => "ipt_txt tam_d", :value => "número" %>
+					</li>
+					<li class="tam_b fleft">
+						<label for="insc_end">+ endereço residencial completo <span>*</span></label><br />
+						<%= f.text_field :end_residencial, :class => "ipt_txt tam_b" %>
+					</li>
+					<li class="tam_d fleft">
+						<label for="insc_end_numero">nº <span>*</span></label><br />
+						<%= f.text_field :end_residencial_numero, :class => "ipt_txt tam_e" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_bairro">bairro <span>*</span></label><br />
+						<%= f.text_field :end_residencial_bairro, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_cidade">cidade <span>*</span></label><br />
+						<%= f.text_field :end_residencial_cidade, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_d fleft">
+						<label for="insc_estado">uf <span>*</span></label><br />
+						<%= f.text_field :end_residencial_estado, :class => "ipt_txt tam_e" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_cep">cep <span>*</span></label><br />
+						<%= f.text_field :end_residencial_cep, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_b clear">
+						<label for="insc_email">+ email <span>*</span></label><br />
+						<%= f.text_field :email, :class => "ipt_txt tam_b" %>
+					</li>
+					<li class="tam_a clear">
+						<label>+ é portador de necessidades especiais? <span>*</span></label><br />
+						<label for="insc_portador_s"><input type="radio" id="program_user_necessidades_especiais" name="program_user[necessidades_especiais]" class="ipt_radio" value="sim" /> sim</label>
+						<label for="insc_portador_n"><input type="radio" id="program_user_necessidades_especiais" name="program_user[necessidades_especiais]" class="ipt_radio" value="nao" /> não</label>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_cuidados">+ necessita de cuidados especiais? </label><br />
+						<%= f.text_field :cuidados_especiais, :class => "ipt_txt tam_b" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_desc">+ descreva em poucas palavras o seu <br />interesse pela atividade <span>*</span></label><br />
+						<%= f.text_area :interesses_desc, :class => "ipt_textarea", :cols => 30, :rows => 10 %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_nacionalidade">+ Nacionalidade <span>*</span></label><br />
+						<%= f.text_field :nacionalidade, :class => "ipt_txt tam_b" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_pais">+ país <span>*</span></label><br />
+						<%= f.select :pais, @countries, {:prompt => "+ País "}, :class => "select" %>						
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_passaporte">+ passaporte</label><br />
+						<%= f.text_field :passaporte, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_inst">+ instituição <span>*</span></label><br />
+						<%= f.text_field :instituicao, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_cargo">+ cargo <span>*</span></label><br />
+						<%= f.text_field :cargo, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="insc_unidade_trabalho">+ unidade de Trabalho <span>*</span></label><br />
+						<%= f.text_field :unidade_de_trabalho, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="insc_atividades">+ descrição das atividades que realiza <span>*</span></label><br />
+						<%= f.text_area :atividades, :class => "ipt_textarea", :cols => 30, :rows => 10 %>
+					</li>
+					<li class="tam_a clear">
+						<%= f.select :interesses, @program_categories, {:prompt => "+ atividade de interesse? "}, :class => "select" %>					
+					</li>
+					<li class="tam_a clear">
+					 * campos marcados com asterisco são de prenchimento obrigatório
+					</li>
+					<li class="tam_b clear">
+						<input type="submit" value="Enviar" class="submit" title="Enviar" />
+					</li>
+				</ul>
+				<div class="clear"></div>
+			<% end -%>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

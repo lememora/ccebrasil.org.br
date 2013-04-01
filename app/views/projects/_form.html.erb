@@ -1,0 +1,28 @@
+  <p>
+    <%= f.label "Categoria" %><br />
+	<%= f.select :project_category_id, @project_categories %>
+  </p>
+  <p>
+    <%= f.label "Título" %><br />
+    <%= f.text_field :title, :size => 62 %>
+  </p> 
+  <p>
+    <%= f.label "Resumo" %><br />
+    <%= f.text_area :extract, :cols => 60, :rows => 10 %>
+  </p>
+  <p>
+    <%= f.label "Descrição" %><br />
+    <%= f.text_area :description, :cols => 60, :rows => 18, :class => "mceEditor" %>
+  </p>
+  <p>
+	<%= f.label "Imagem" %> <small>[tamanho: 584x258]</small><br/>
+	<% if @project.project_image.exists? then %>
+		<%= image_tag @project.project_image.url(:final) %>
+		<%= image_tag @project.project_image.url(:small) %><br/>
+	<% end %>
+	<%= f.file_field :project_image %>
+  </p>
+  <p>
+    <%= f.label "Imagem - Créditos" %><br />
+    <%= f.text_field :image_credits, :size => 62 %>
+  </p>

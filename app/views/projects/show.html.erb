@@ -1,0 +1,61 @@
+<h1>Projetos</h1>
+
+<p>
+  <b>Categoria:</b>
+  <%=h @project.project_category.title %>
+</p>
+
+<p>
+  <b>Título:</b>
+  <%=h @project.title %>
+</p>
+
+<p>
+  <b>Subtitulo:</b>
+  <%=h @project.subtitle %>
+</p>
+
+<p>
+  <b>Onde:</b>
+  <%=h @project.where %>
+</p>
+
+<p>
+  <b>Quando:</b>
+  <%=h @project.when %>
+</p>
+
+<p>
+  <b>Resumo:</b>
+  <%=h @project.extract %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%=h @project.description %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @project.project_image.exists? then %>
+		<%= image_tag @project.project_image.url(:final) %><br/>
+	<% end %>
+</p>
+
+<p>
+  <b>Imagem - Créditos:</b>
+  <%=h @project.image_credits %>
+</p>
+
+<p>
+  <b>Galeria de Imagens</b> <%= link_to '[editar]', project_project_additional_images_path(@project) %><br/>
+  <b>Textos</b> <%= link_to '[editar]', project_project_texts_path(@project) %><br/>
+  <b>Documentos</b> <%= link_to '[editar]', project_project_documents_path(@project) %><br/>
+  <b>Vídeos</b> <%= link_to '[editar]', project_project_videos_path(@project) %><br/>
+  <b>Audios</b> <%= link_to '[editar]', project_project_audios_path(@project) %><br/>
+  <b>Links</b> <%= link_to '[editar]', project_project_links_path(@project) %><br/>
+</p>
+
+
+<%= link_to 'Editar', edit_project_path(@project) %> |
+<%= link_to 'Voltar', projects_path %>

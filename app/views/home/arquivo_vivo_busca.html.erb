@@ -1,0 +1,81 @@
+<body class="arquivo_vivo">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_arquivo_vivo" class="umalinha" title="Arquivo Vivo">Arquivo Vivo<span>&nbsp;</span></h2>
+			<h3>Autores e projetos</h3>
+			<p>É um dispositivo inventivo de construção da história e memória geradas a partir da produção do CCE_SP.</p>
+			
+			<form id="pesquisa_arquivo_vivo" class="form" onsubmit="return jump()">
+				<h3 class="sifr_medio">Pesquisa</h3>
+				<p>Selecione abaixo a categoria que você procura e em seguida o nome do projeto ou autor que deseja visualizar.</p>
+				
+				<select name="categoria_arquivo_vivo" id="categoria_arquivo_vivo" class="select">
+					<option value="todas">escolha uma categoria</option>
+					<% @living_file_categories.each do |living_file_category| -%>
+						<option value="<%= living_file_category.permalink %>"><%= living_file_category.category %></option>
+					<% end -%>
+				</select>
+				<div>
+					<p><input type="text" name="arquivo_vivo_busca" id="arquivo_vivo_busca" class="ipt_txt" value="digite o nome do artista ou projeto" /></p>
+					<p><input type="submit" value="Enviar" class="submit" title="Enviar" /></p>
+					<p>ou <a href="javascript:void" onclick="jump_to_all();"><strong>veja todos</strong></a></p>
+				</div>
+				<script type="text/javascript">
+					// <![CDATA[
+				  	function jump(){ 
+						categoria = $("#categoria_arquivo_vivo").val();
+						keyword = $("#arquivo_vivo_busca").val();
+						if(keyword == 'digite o nome do artista ou projeto'){
+							keyword = 'todas';
+						}
+						eval("parent.location='/arquivo_vivo/categoria/"+ categoria +"/palavra_chave/"+ keyword +"'");
+						return false;
+					}
+					function jump_to_all(){ 
+						categoria = $("#categoria_arquivo_vivo").val();
+						keyword = 'todas';
+						eval("parent.location='/arquivo_vivo/categoria/"+ categoria +"/palavra_chave/"+ keyword +"'");
+						return false;
+					}
+					// ]]>
+				</script>
+			</form>
+			
+		</div>
+		
+		<div id="column">
+			<ul id="projetos">				
+				<% @living_files.each do |living_file| -%>					
+					<li class="vevent">
+						<h3 class="summary"><a href="/arquivo_vivo/<%= living_file.permalink %>"><%= living_file.title %></a></h3>						
+						<span class="proj_ico"><a href="/arquivo_vivo/<%= living_file.permalink %>"><%= image_tag living_file.living_file.url(:small), :alt => "#{living_file.title}", :title => "#{living_file.title}" %></a></span>
+						<p class="description"><%= living_file.title %></p>
+					
+						<!-- =============================== LINKS COM ICONES ================================= -->
+						<!-- Basta deixar dentro de um <p class="ico_projs"> e com a class correspondente -->
+						<!--
+						<p class="ico_projs">
+							<a href="#" class="ico_projs_texto" title="texto crítico">texto crítico</a>
+							<a href="#" class="ico_projs_video" title="vídeo">vídeo</a>
+							<a href="#" class="ico_projs_fotos" title="fotos">fotos</a>
+							<a href="#" class="ico_projs_catalogo" title="catálogo">catálogo</a>
+						</p>
+						-->
+					</li>
+				<% end -%>							
+			</ul>
+			<% if @living_files.empty? -%>	
+				Nenhum resultado encontrado.
+			<% end -%>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

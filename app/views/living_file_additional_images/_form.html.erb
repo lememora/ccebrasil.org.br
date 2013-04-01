@@ -1,0 +1,12 @@
+  <p>
+    <%= f.label "Título" %><br />
+    <%= f.text_field :title, :size => 62 %>
+  </p>
+  
+  <p>
+	<%= f.label :imagem %><br/>
+	<% if @living_file_additional_image.lf_add_image.exists? -%>
+		<%= image_tag @living_file_additional_image.lf_add_image.url(:thumb) %><br/>
+	<% end %>
+	<%= f.file_field :lf_add_image %>
+  </p>

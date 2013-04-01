@@ -1,0 +1,13 @@
+<h1><%= @living_file.title %> :: Documentos</h1>
+
+<% form_for([@living_file, @living_file_document], :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => { :f => f } %>
+  
+  <p>
+    <%= f.submit 'Criar', :disable_with => "Criando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', living_file_living_file_documents_path(@living_file) %>

@@ -1,0 +1,14 @@
+<h1>Arquivos Protegidos :: Edição</h1>
+
+<% form_for(@protected_file, :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+  	<%= render :partial => "form", :locals => { :f => f } %>
+
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @protected_file %> |
+<%= link_to 'Voltar', protected_files_path %>

@@ -1,0 +1,25 @@
+<h1>Redes Sociais</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>
+    <th>Título</th>
+  </tr>
+
+<% @socialnetwork_sites.each do |socialnetwork_site| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/socialnetwork_sites/#{socialnetwork_site.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/socialnetwork_sites/#{socialnetwork_site.id}/lower", :method => :put %>
+	</td>
+    <td><%=h socialnetwork_site.title %></td>
+    <td><%= link_to 'Exibir', socialnetwork_site %></td>
+    <td><%= link_to 'Editar', edit_socialnetwork_site_path(socialnetwork_site) %></td>
+    <td><%= link_to 'Remover', socialnetwork_site, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova rede social', new_socialnetwork_site_path %>

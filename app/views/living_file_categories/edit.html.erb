@@ -1,0 +1,14 @@
+<h1>Categorias de Arquivo Vivo :: Edição</h1>
+
+<% form_for(@living_file_category) do |f| %>
+  <%= f.error_messages %>
+
+  	<%= render :partial => "form", :locals => { :f => f } %>
+
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @living_file_category %> |
+<%= link_to 'Voltar', living_file_categories_path %>

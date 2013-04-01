@@ -1,0 +1,140 @@
+<body class="projetos">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_projetos" class="umalinha" title="Projetos">Projetos<span>&nbsp;</span></h2>
+			<h3>Conheça os projetos e os âmbitos de ação do CCE_SP</h3>
+			<p>Atuam sob 3 âmbitos principais: Cultura e Desenvolvimento, Cooperação cultural e científica e Promoção e ação cultural exterior. Com esse intuito são desenvolvidos parcerias e apoios que promovem a pluralidade cultural.</p>
+			<p><strong>Para conhecer os projetos e ter acesso às suas documentações, escolha abaixo um âmbito de ação.</strong></p>
+			<ul id="proj_tipos">
+				<li class="proj_cult">
+					<a href="/projetos/categoria/<%= @project_categories[0].permalink %>">
+						<strong><%= @project_categories[0].title %></strong>
+						<span class="tdm"><%= @project_categories[0].description %></span>
+					</a>
+				</li>
+				<li class="proj_coop">
+					<a href="/projetos/categoria/<%= @project_categories[1].permalink %>">
+						<strong><%= @project_categories[1].title %></strong>
+						<span class="tdm"><%= @project_categories[1].description %></span>
+					</a>
+					</a>
+				</li>
+				<li class="proj_promo">
+					<a href="/projetos/categoria/<%= @project_categories[2].permalink %>">
+						<strong><%= @project_categories[2].title %></strong>
+						<span class="tdm"><%= @project_categories[2].description %></span>
+					</a>
+				</li>
+				<li class="proj_todos">
+					<a href="/projetos">
+						<strong>veja todos os projetos</strong>
+					</a>
+				</li>
+			</ul>
+			
+		</div>
+		
+		<div id="column">
+			<ul id="projetos">
+				<!-- =============================== LISTA PROJETOS ================================= -->
+				<!-- O icone do circulo colorido é definido pelas classes ".proj_cult", ".proj_coop", ".proj_promo" e ".proj_todos" -->
+				<li class="vevent proj_cult">
+					<h3 class="summary"><a href="/projeto/<%= @proj_cult.permalink %>"><%= @proj_cult.title %> <strong><%= @project_categories[0].title %></strong></a></h3>
+					<% unless @proj_cult.project_image.url == "/project_images/original/missing.png" -%>
+						<span class="proj_ico">
+							<a href="/projeto/<%= @proj_cult.permalink %>">
+								<%= image_tag @proj_cult.project_image.url(:small), :alt => "#{@proj_cult.title}", :title => "#{@proj_cult.title}" %>
+							</a>
+						</span>
+					<% end -%>
+					<p class="description"><%= @proj_cult.extract %></p>
+					
+					<!-- =============================== LINKS COM ICONES ================================= -->
+					<p class="ico_projs">
+						<% unless @proj_cult.project_texts.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_cult.permalink %>" class="ico_projs_texto" title="texto crítico">textos</a>
+						<% end -%>
+						<% unless @proj_cult.project_videos.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_cult.permalink %>" class="ico_projs_video" title="vídeo">vídeo</a>
+						<% end -%>
+						<% unless @proj_cult.project_additional_images.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_cult.permalink %>" class="ico_projs_fotos" title="fotos">fotos</a>
+						<% end -%>
+						<% unless @proj_cult.project_documents.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_cult.permalink %>" class="ico_projs_catalogo" title="catálogo">catálogo</a>
+						<% end -%>
+					</p>
+				</li>
+				<li class="vevent proj_coop">
+					<h3 class="summary"><a href="/projeto/<%= @proj_coop.permalink %>"><%= @proj_coop.title %> <strong><%= @project_categories[1].title %></strong></a></h3>
+					<% unless @proj_coop.project_image.url == "/project_images/original/missing.png" -%>
+						<span class="proj_ico">
+							<a href="/projeto/<%= @proj_coop.permalink %>">
+								<%= image_tag @proj_coop.project_image.url(:small), :alt => "#{@proj_coop.title}", :title => "#{@proj_coop.title}" %>
+							</a>
+						</span>
+					<% end -%>
+					<p class="description"><%= @proj_coop.extract %></p>
+					<p class="ico_projs">
+						<% unless @proj_coop.project_texts.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_coop.permalink %>" class="ico_projs_texto" title="texto crítico">textos</a>
+						<% end -%>
+						<% unless @proj_coop.project_videos.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_coop.permalink %>" class="ico_projs_video" title="vídeo">vídeo</a>
+						<% end -%>
+						<% unless @proj_coop.project_additional_images.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_coop.permalink %>" class="ico_projs_fotos" title="fotos">fotos</a>
+						<% end -%>
+						<% unless @proj_coop.project_documents.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_coop.permalink %>" class="ico_projs_catalogo" title="catálogo">catálogo</a>
+						<% end -%>
+					</p>
+				</li>
+				<li class="vevent proj_promo">
+					<h3 class="summary"><a href="/projeto/<%= @proj_promo.permalink %>"><%= @proj_promo.title %> <strong><%= @project_categories[2].title %></strong></a></h3>
+					<% unless @proj_promo.project_image.url == "/project_images/original/missing.png" -%>
+						<span class="proj_ico">
+							<a href="/projeto/<%= @proj_promo.permalink %>">
+								<%= image_tag @proj_promo.project_image.url(:small), :alt => "#{@proj_promo.title}", :title => "#{@proj_promo.title}" %>
+							</a>
+						</span>
+					<% end -%>
+					<p class="description"><%= @proj_promo.extract %></p>
+					<p class="ico_projs">
+						<% unless @proj_promo.project_texts.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_promo.permalink %>" class="ico_projs_texto" title="texto crítico">textos</a>
+						<% end -%>
+						<% unless @proj_promo.project_videos.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_promo.permalink %>" class="ico_projs_video" title="vídeo">vídeo</a>
+						<% end -%>
+						<% unless @proj_promo.project_additional_images.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_promo.permalink %>" class="ico_projs_fotos" title="fotos">fotos</a>
+						<% end -%>
+						<% unless @proj_promo.project_documents.empty? or 1 == 1 -%>
+							<a href="/projeto/<%= @proj_promo.permalink %>" class="ico_projs_catalogo" title="catálogo">catálogo</a>
+						<% end -%>
+					</p>
+				</li>
+				<!--
+				<li class="vevent proj_todos">
+					<h3 class="summary"><a href="/projeto/<%# @proj_todos.permalink %>">Todos os projetos - lista com todos os projetos identificados com as bolinhas ao lado</a></h3>
+					<span class="proj_ico"><a href="/projeto/<%# @proj_todos.permalink %>"><%# image_tag @proj_todos.project_image.url(:small), :alt => "#{@proj_todos.title}", :title => "#{@proj_todos.title}" %></a></span>
+					<p class="description"><%# @proj_todos.extract %></p>
+					<p class="ico_projs">
+						<a href="#" class="ico_projs_video" title="vídeo">vídeo</a>
+						<a href="#" class="ico_projs_fotos" title="fotos">fotos</a>
+					</p>
+				</li>
+				-->
+			</ul>
+		</div>		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

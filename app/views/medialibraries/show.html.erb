@@ -1,0 +1,20 @@
+<h1>Mediateca</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @medialibrary.title %>
+</p>
+
+<p>
+  <b>Descrição</b>
+  <%=h @medialibrary.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @medialibrary.url %>
+</p>
+
+
+<%= link_to 'Editar', edit_medialibrary_path(@medialibrary) %> |
+<%= link_to 'Voltar', medialibraries_path %>

@@ -1,0 +1,22 @@
+<h1>Redes Sociais</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @socialnetwork_site.title %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @socialnetwork_site.url %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @socialnetwork_site.sn_icon.exists? then %>
+		<%= image_tag @socialnetwork_site.sn_icon.url(:icon) %><br/>
+	<% end %>
+</p>
+
+
+<%= link_to 'Editar', edit_socialnetwork_site_path(@socialnetwork_site) %> |
+<%= link_to 'Voltar', socialnetwork_sites_path %>

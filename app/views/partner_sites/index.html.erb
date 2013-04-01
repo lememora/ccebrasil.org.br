@@ -1,0 +1,27 @@
+<h1>Sites Parceiros</h1>
+
+<table>
+  <tr>
+    <th>Posição</th>
+    <th>Título</th>
+	<th>Categ</th>
+  </tr>
+
+<% @partner_sites.each do |partner_site| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/partner_sites/#{partner_site.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/partner_sites/#{partner_site.id}/lower", :method => :put %>
+	</td>
+    <td><%=h partner_site.title %></td>
+	<td><%=h partner_site.categ %></td>      
+    <td><%= link_to 'Exibir', partner_site %></td>
+    <td><%= link_to 'Editar', edit_partner_site_path(partner_site) %></td>
+    <td><%= link_to 'Remover', partner_site, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo site parceiro', new_partner_site_path %>

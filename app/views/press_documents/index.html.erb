@@ -1,0 +1,34 @@
+<h1><%= @press_kit.title %> :: Arquivos</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>
+	<th>Imagem</th>
+    <th>Título</th>
+    <th>Arquivo</th>
+  </tr>
+
+<% @press_documents.each do |press_document| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/press_kits/#{@press_kit.id}/press_documents/#{press_document.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/press_kits/#{@press_kit.id}/press_documents/#{press_document.id}/lower", :method => :put %>
+	</td>
+	<td>
+		<% if press_document.presskit_thumb.exists? -%>
+			<%= image_tag press_document.presskit_thumb.url(:thumb) %><br/>
+		<% end %>
+	</td>
+    <td><%=h press_document.title %></td>
+    <td><%=h press_document.presskit.url %></td>
+    <td><%= link_to 'Editar', edit_press_kit_press_document_path(@press_kit, press_document) %></td>
+    <td><%= link_to 'Remover', [@press_kit, press_document], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo Arquivo', new_press_kit_press_document_path(@press_kit) %>
+<br/><br/>
+<%= link_to 'Voltar para Imprensa', press_kits_url %>

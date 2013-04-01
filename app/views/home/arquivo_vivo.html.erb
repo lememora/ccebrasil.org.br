@@ -1,0 +1,175 @@
+<body class="arquivo_vivo">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_arquivo_vivo" class="umalinha" title="Arquivo Vivo">Arquivo Vivo<span>&nbsp;</span></h2>
+			<h3>Autores e projetos</h3>
+			<p>É um dispositivo inventivo de construção da história e memória geradas a partir da produção do CCE_SP.</p>
+			
+			<form id="pesquisa_arquivo_vivo" class="form" onsubmit="return jump()">
+				<h3 class="sifr_medio">Pesquisa</h3>
+				<p>Selecione abaixo a categoria que você procura e em seguida o nome do projeto ou autor que deseja visualizar.</p>
+				
+				<select name="categoria_arquivo_vivo" id="categoria_arquivo_vivo" class="select">
+					<option value="todas">escolha uma categoria</option>
+					<% @living_file_categories.each do |living_file_category| -%>
+						<option value="<%= living_file_category.permalink %>"><%= living_file_category.category %></option>
+					<% end -%>
+				</select>
+				<div>
+					<p><input type="text" name="arquivo_vivo_busca" id="arquivo_vivo_busca" class="ipt_txt" value="digite o nome do artista ou projeto" /></p>
+					<p><input type="submit" value="Enviar" class="submit" title="Enviar" /></p>
+					<p>ou <a href="javascript:void" onclick="jump_to_all();"><strong>veja todos</strong></a></p>
+				</div>
+				<script type="text/javascript">
+					// <![CDATA[
+				  	function jump(){ 
+						categoria = $("#categoria_arquivo_vivo").val();
+						keyword = $("#arquivo_vivo_busca").val();
+						if(keyword == 'digite o nome do artista ou projeto'){
+							keyword = 'todas';
+						}
+						eval("parent.location='/arquivo_vivo/categoria/"+ categoria +"/palavra_chave/"+ keyword +"'");
+						return false;
+					}
+					function jump_to_all(){ 
+						categoria = $("#categoria_arquivo_vivo").val();
+						keyword = 'todas';
+						eval("parent.location='/arquivo_vivo/categoria/"+ categoria +"/palavra_chave/"+ keyword +"'");
+						return false;
+					}
+					// ]]>
+				</script>
+			</form>
+			
+		</div>
+		
+		<div id="column" class="proj_none">
+			<!-- H2: sFIR -->
+			<h2><%= @living_file.title %></h2>
+			<% unless @living_file.living_file.url == "/living_files/original/missing.png" -%>
+				<div class="noticias_box_fotos">
+					<%= image_tag @living_file.living_file.url(:final), :alt => "#{@living_file.title}", :title => "#{@living_file.title}" %>
+					<% unless @living_file.image_credits.blank? -%>
+						<p class="legenda"><%= @living_file.image_credits %></p>
+					<% end -%>
+				</div>
+			<% end -%>
+			
+			<div class="subcoluna subcoluna50_esq">
+				<h3>sobre o projeto</h3>
+				<p><%= @living_file.description %></p>
+			</div>
+			
+			<div class="subcoluna subcoluna50_dir">
+				
+				<% unless @living_file.living_file_texts.empty? and @living_file.living_file_texts.empty? and @living_file.living_file_additional_images.empty? and @living_file.living_file_videos.empty? and @living_file.living_file_links.empty? -%>
+					<h3>links relacionados</h3>
+				<% end -%>				
+				
+				<% unless @living_file.living_file_texts.empty? -%>
+					<h4>_textos</h4>
+					<!-- =============================== TEXTOS ================================= -->
+					<ul>
+						<% @living_file.living_file_texts.each do |text| -%>
+							<li><a href="<%= text.lf_txt.url %>"><%= text.title %></a></li>
+						<% end -%>
+					</ul>
+				<% end -%>	
+				
+				<% unless @living_file.living_file_documents.empty? -%>
+					<h4>_documentos</h4>
+					<!-- =============================== DOCUMENTOS ================================= -->
+					<ul>
+						<% @living_file.living_file_documents.each do |document| -%>
+							<li><a href="<%= document.lf_doc.url %>"><%= document.title %></a></li>
+						<% end -%>
+					</ul>
+				<% end -%>				
+				
+				<% unless @living_file.living_file_audios.empty? -%>
+					<h4>_audios</h4>
+					<!-- =============================== AUDIOS ================================= -->
+					<ul>
+						<% @living_file.living_file_audios.each do |audio| -%>
+							<!--<li><a href="<%= audio.lf_audio.url %>"><%= audio.title %></a></li>-->
+							<li>
+								<div id="player_<%= audio.id %>"><%=h audio.title %></div>
+							</li>
+							<script type="text/javascript">
+								// <![CDATA[
+								//carrega o flash
+								var so = new SWFObject("/images/cce_player.swf?file=<%=h audio.lf_audio.url %>&file_name=<%=h audio.title %>&ok", "cce_player", '266', '28', "8", "#ffffff", '100%');
+								so.addParam("quality", "high");
+								so.addParam("wmode", "transparent");
+								so.addParam("salign", "t");
+								so.write("player_<%= audio.id %>");
+								// ]]>
+							</script>
+						<% end -%>
+					</ul>
+				<% end -%>		
+			
+				
+				<% unless @living_file.living_file_additional_images.empty? -%>
+					<h4>_galeria de imagens</h4>
+					<p>
+					<!-- =============================== GALERIA JQUERY ================================= -->					
+						<ul class="galeria_lista">
+							<% @living_file.living_file_additional_images.each do |image| -%>
+								<li><a href="<%= image.lf_add_image.url %>" class="galeria_item"><img src="<%= image.lf_add_image.url(:thumb) %>" alt="<%= image.title %>" title="<%= image.title %>" /></a></li>
+							<% end -%>	
+						</ul>
+					</p>
+				<% end -%>
+
+				<!-- =============================== DIV CLEAR: usado para corrigir formatação ================================= -->
+				<div class="clear"></div>					
+				
+				<% unless @living_file.living_file_videos.empty? -%>
+					<h4>_vídeo</h4>
+					<!-- =============================== VIDEOS ================================= -->
+					<% @living_file.living_file_videos.each do |video| -%>
+						<p><%= video.embed %></p>
+					<% end -%>
+				<% end -%>
+				
+				<% unless @living_file.living_file_links.empty? -%>	
+					<% 
+						atual = 0
+						total = @living_file.living_file_links.size
+						categ_atual = ""
+					%>
+					<% @living_file.living_file_links.each do |link| -%>  							
+						<% if atual == 0 -%>
+							<h4><%= link.categ %></h4>
+								<ul>
+						<% else -%>
+							<% unless link.categ == categ_atual -%>
+									</ul>
+								<h4><%= link.categ %></h4>
+									<ul>
+							<% end -%>	
+						<% end -%>							
+						<li><a href="<%= link.url %>"><%= link.title %></a></li>							
+						<% categ_atual = link.categ -%>
+						<% atual = atual +1 -%>													
+						<% if atual == total -%>
+							</ul>   
+						<% end -%>							
+					<% end -%>
+				<% end -%>
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

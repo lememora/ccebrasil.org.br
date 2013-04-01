@@ -1,0 +1,29 @@
+<h1><%= @project.title %> :: Documentos</h1>
+
+<table>
+  <tr>
+    <th>Posição</th>
+	<th>Título</th>
+	<th>Arquivo</th>
+  </tr>
+
+<% @project_audios.each do |project_audio| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/projects/#{@project.id}/project_audios/#{project_audio.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/projects/#{@project.id}/project_audios/#{project_audio.id}/lower", :method => :put %>
+	</td>
+	<td><%=h project_audio.title %></td>
+    <td><%=h project_audio.position %></td>
+    <td><%=h project_audio.prj_audio.url %></td>
+    <td><%= link_to 'Editar', edit_project_project_audio_path(@project, project_audio) %></td>
+    <td><%= link_to 'Remover', [@project, project_audio], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo documento', new_project_project_audio_path(@project) %>
+<br/><br/>
+<%= link_to 'Voltar para o projeto', @project %>

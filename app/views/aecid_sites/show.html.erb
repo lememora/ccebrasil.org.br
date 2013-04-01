@@ -1,0 +1,15 @@
+<h1>Rede AECID</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @aecid_site.title %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @aecid_site.url %>
+</p>
+
+
+<%= link_to 'Editar', edit_aecid_site_path(@aecid_site) %> |
+<%= link_to 'Voltar', aecid_sites_path %>

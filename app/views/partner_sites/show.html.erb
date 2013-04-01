@@ -1,0 +1,20 @@
+<h1>Sites Parceiros</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @partner_site.title %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @partner_site.url %>
+</p>
+
+<p>
+  <b>Categ:</b>
+  <%=h @partner_site.categ %>
+</p>
+
+
+<%= link_to 'Editar', edit_partner_site_path(@partner_site) %> |
+<%= link_to 'Voltar', partner_sites_path %>

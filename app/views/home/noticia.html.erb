@@ -1,0 +1,51 @@
+<body class="noticias">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_noticias2" class="umalinha" title="Notícias">Notícias<span>&nbsp;</span></h2>
+			<h3>Espaço em rede</h3>
+			<p>Para divulgação de assuntos relacionados ao CCE_SP, que acontecem aqui e acolá.</p>
+			<p>Também divulga editais, residências, apoio a projetos, entre outras novidades.</p>
+			<ul id="lista_noticias_sidebar">
+				<li><a href="/bolsas_e_convocatorias">Bolsas e Convocatórias</a></li>
+			</ul>
+		</div>
+		
+		<div id="column">
+			<div id="noticias_box">			
+			
+				<h3><%= @article.created_at.strftime('%d.%m.%Y')%></h3>  
+				<h2><strong><%= @article.title %></strong></h2>
+				
+				<div class="noticias_box_fotos">
+					<% unless @article.article_image.url == "/article_images/original/missing.png" -%>
+						<%= image_tag @article.article_image.url(:final), :alt => "#{@article.title}", :title => "#{@article.title}" %>
+						<p class="legenda"><%= @article.image_desc %></p>
+					<% end -%>
+				</div>
+				
+				<p><%= @article.description %></p>
+				
+				<p class="compartilhar">
+					<a href="http://www.addthis.com/bookmark.php" 
+				        onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]');" 
+				        onmouseout="addthis_close();" 
+				        onclick="return addthis_sendto();">
+						<img src="http://s7.addthis.com/static/btn/sm-plus.gif" width="16" height="16" border="0" alt="Compartilhe esta notícia" /> 
+						Compartilhe esta notícia
+					</a>
+			        <script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
+				</p>
+				<p class="todas_noticias_link"><a href="/noticias">+ todas as notícias</a></p>
+			</div>
+		</div><!-- fim de COLUMN -->
+		
+	</div><!-- fim de CONTENT -->
+	
+	<%= render :partial => "footer" %>
+
+</div>

@@ -1,0 +1,30 @@
+<h1>Destaque</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @highlight.title %>
+</p>
+
+<p>
+  <b>Subtítulo</b>
+  <%=h @highlight.subtitle %>
+</p>
+
+<p>
+  <b>Texto do link:</b>
+  <%=h @highlight.link_txt %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @highlight.url %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @highlight.highlight_image.exists? -%>
+		<%= image_tag @highlight.highlight_image.url(:thumb) %><br/>
+	<% end -%>
+</p>
+
+<%= link_to 'Editar', edit_highlight_path(@highlight) %>

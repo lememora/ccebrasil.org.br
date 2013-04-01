@@ -1,0 +1,13 @@
+<h1><%= @press_kit.title %> :: Arquivos</h1>
+
+<% form_for([@press_kit, @press_document], :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => { :f => f } %>
+ 
+  <p>
+    <%= f.submit 'Criar', :disable_with => "Criando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', press_kit_press_documents_path(@press_kit) %>

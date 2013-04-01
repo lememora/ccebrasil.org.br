@@ -1,0 +1,20 @@
+<h1>Agenda</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @agenda.title %>
+</p>
+
+<p>
+  <b>Onde:</b>
+  <%=h @agenda.where %>
+</p>
+
+<p>
+  <b>Quando:</b>
+  <%=h @agenda.when %>
+</p>
+
+
+<%= link_to 'Editar', edit_agenda_path(@agenda) %> |
+<%= link_to 'Voltar', agendas_path %>

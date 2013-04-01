@@ -1,0 +1,64 @@
+  <p>
+    <%= f.label "Título" %><br />
+    <%= f.text_field :title, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label "Categoria" %><br />
+    <%= f.select :program_category_id, @program_categories %>
+  </p>
+  <p>
+    <%= f.label "Data de início" %><br />
+    <%= f.text_field :day, :size => 4 %> /
+	<%= f.text_field :month, :size => 4 %> /
+	<%= f.text_field :year, :size => 6 %>
+  </p>
+  <p>
+    <%= f.label "Data de encerramento" %><br />
+    <%= f.text_field :finish_day, :size => 4 %> /
+	<%= f.text_field :finish_month, :size => 4 %> /
+	<%= f.text_field :finish_year, :size => 6 %>
+  </p>
+  <p>
+    <%= f.label "Subtitulo" %><br />
+    <%= f.text_field :subtitle, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label "Onde" %><br />
+    <%= f.text_field :where, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label "Quando" %><br />
+    <%= f.text_field :when, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label "Resumo" %><br />
+    <%= f.text_area :extract, :cols => 60, :rows => 10 %>
+  </p>
+  <p>
+    <%= f.label "Descrição" %><br />
+    <%= f.text_area :description, :cols => 60, :rows => 18, :class => "mceEditor" %>
+  </p>
+  <p>
+    <%= f.label "Url" %><br />
+    <%= f.text_field :url, :size => 62 %>
+  </p> 
+
+  <p>
+	<%= f.label "Imagem" %> <small>[thumb: 152x155]</small><br/>
+	<% if @program.program_image.exists? then %>
+		<%= image_tag @program.program_image.url(:thumb) %><br/>
+	<% end %>
+	<%= f.file_field :program_image %>
+  </p>
+
+  <p>
+	<%= f.check_box :open_to_register %> Inscrições abertas / aceitar inscrições
+  </p>
+
+  <p>
+    <b>Atributos</b>
+	<%= add_attribute_link "Novo atributo" %>
+  </p>
+  <div id="attributes">
+	<%= render :partial => "program_generic_attribute", :collection => @program.program_generic_attributes %>
+  </div>

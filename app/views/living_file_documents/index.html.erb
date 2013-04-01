@@ -1,0 +1,28 @@
+<h1><%= @living_file.title %> :: Documentos</h1>
+
+<table>
+  <tr>
+    <th>Posição</th>
+	<th>Título</th>
+	<th>Arquivo</th>
+  </tr>
+
+<% @living_file_documents.each do |living_file_document| %>
+  <tr>
+    <td>
+		<%= link_to 'Up', "/living_files/#{@living_file.id}/living_file_documents/#{living_file_document.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/living_files/#{@living_file.id}/living_file_documents/#{living_file_document.id}/lower", :method => :put %>
+	</td>
+    <td><%=h living_file_document.title %></td>
+    <td><%=h living_file_document.lf_doc.url %></td>
+    <td><%= link_to 'Editar', edit_living_file_living_file_document_path(@living_file, living_file_document) %></td>
+    <td><%= link_to 'Remover', [@living_file, living_file_document], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo documento', new_living_file_living_file_document_path(@living_file) %>
+<br/><br/>
+<%= link_to 'Voltar para o arquivo vivo', @living_file %>

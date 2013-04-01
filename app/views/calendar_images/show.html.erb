@@ -1,0 +1,32 @@
+<h1>Imagem do Mês</h1>
+
+<p>
+  <b>Mês:</b>
+  <%=h @calendar_image.month %>
+</p>
+
+<p>
+  <b>Ano:</b>
+  <%=h @calendar_image.year %>
+</p>
+
+<p>
+  <b>Créditos:</b>
+  <%=h @calendar_image.credits %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @calendar_image.url %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @calendar_image.calendar_image.exists? then %>
+		<%= image_tag @calendar_image.calendar_image.url(:approved) %><br/>
+	<% end %>
+</p>
+
+
+<%= link_to 'Editar', edit_calendar_image_path(@calendar_image) %> |
+<%= link_to 'Voltar', calendar_images_path %>

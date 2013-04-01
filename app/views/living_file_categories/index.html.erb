@@ -1,0 +1,20 @@
+<h1>Categorias de Arquivo Vivo</h1>
+
+<table>
+  <tr>
+    <th>Categoria</th>
+  </tr>
+
+<% @living_file_categories.each do |living_file_category| %>
+  <tr>
+    <td><%=h living_file_category.category %></td>
+    <td><%= link_to 'Exibir', living_file_category %></td>
+    <td><%= link_to 'Editar', edit_living_file_category_path(living_file_category) %></td>
+    <!--<td><%= link_to 'Remover', living_file_category, :confirm => 'Você tem certeza?', :method => :delete %></td>-->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova categoria', new_living_file_category_path %>

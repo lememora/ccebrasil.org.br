@@ -1,0 +1,22 @@
+<h1>Editores</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+  </tr>
+
+<% @editors.each do |editor| %>
+  <tr>
+    <td><%=h editor.name %></td>
+    <td><%=h editor.email %></td>
+    <td><%= link_to 'Exibir', editor %></td>
+    <td><%= link_to 'Editar', edit_editor_path(editor) %></td>
+    <td><%= link_to 'Remover', editor, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo Editor', new_editor_path %>

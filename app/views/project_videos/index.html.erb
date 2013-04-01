@@ -1,0 +1,26 @@
+<h1><%= @project.title %> :: Videos</h1>
+
+<table>
+  <tr>
+    <th>Posição</th>
+	<th>Título</th>
+  </tr>
+
+<% @project_videos.each do |project_video| %>
+  <tr>
+    <td>
+		<%= link_to 'Up', "/projects/#{@project.id}/project_videos/#{project_video.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/projects/#{@project.id}/project_videos/#{project_video.id}/lower", :method => :put %>
+	</td>
+    <td><%=h project_video.title %></td>
+    <td><%= link_to 'Editar', edit_project_project_video_path(@project, project_video) %></td>
+    <td><%= link_to 'Remover', [@project, project_video], :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo video', new_project_project_video_path(@project) %>
+<br/><br/>
+<%= link_to 'Voltar para o projeto', @project %>

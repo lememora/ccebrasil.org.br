@@ -1,0 +1,14 @@
+<h1>Categoria de Projetos :: Edição</h1>
+
+<% form_for(@project_category) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => { :f => f } %>
+  
+  <p>
+    <%= f.submit 'Atualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @project_category %> |
+<%= link_to 'Voltar', project_categories_path %>

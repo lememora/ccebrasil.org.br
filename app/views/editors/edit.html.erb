@@ -1,0 +1,14 @@
+<h1>Editores :: Edição</h1>
+
+<% form_for(@editor) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => {:f => f} %>
+  
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @editor %> |
+<%= link_to 'Voltar', editors_path %>

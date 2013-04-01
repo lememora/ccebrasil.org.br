@@ -1,0 +1,79 @@
+<body class="midiateca">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_midiateca" class="umalinha" title="Midiateca">Midiateca<span>&nbsp;</span></h2>
+			<h3>Serviços</h3>
+			
+			<p>Nesta página você tem acesso às possibilidades  de consulta e empréstimo do material bibliográfico da midiateca.</p> 
+			
+			<div id="sidebar_midiateca_servicos">
+				<p><strong>O serviço de empréstimo será realizado  exclusivamente mediante prévio agendamento.</strong></p>
+				
+				<h4>Horários</h4>
+				<p>Agendamento para o empréstimo: das 14 às 20:30 horas de segunda a sexta-feira pelo telefone 11 3822-2627.</p>
+				
+				<h4>Empréstimo de Materiais</h4>
+				<p>no dia e hora agendado</p>
+				
+				<h4>Devolução</h4>
+				<p>das 9h30 às 20h30 <br />
+				de segunda a sexta-feira na recepção do CCE_SP.</p>
+				
+				<p>Os comprovantes de empréstimo e devolução serão enviados para o e-mail do usuário em arquivo PDF.</p>
+				
+				<h4>Dúvidas e outras informações</h4>
+				<p>Acesse a página de contato da midiateca para enviar as dúvidas e solicitar outras informações sobre os serviços.</p>
+			</div>
+			
+			<ul id="menu_midiateca_sidebar" class="menu_sidebar">
+				<li id="sidebar_item1"><a href="/midiateca" title="sobre a midiateca">sobre a midiateca<span>&nbsp;</span></a></li>
+				<li id="sidebar_item2" class="selected"><a href="/midiateca/servicos" title="serviços">serviços<span>&nbsp;</span></a></li>
+				<li id="sidebar_item3"><a href="http://ccebrasil.phl-net.com.br" title="catálogo online">catálogo online<span>&nbsp;</span></a></li>
+				<li id="sidebar_item4"><a href="/midiateca/links" title="links midiateca">links midiateca<span>&nbsp;</span></a></li>
+				<li id="sidebar_item5"><a href="/midiateca/contato" title="contato">contato<span>&nbsp;</span></a></li>
+			</ul>
+		</div>
+		
+		<div id="column">
+			<div id="midiateca_servicos">
+				<h3>Empréstimo domiciliar</h3>
+				<p>No momento serão emprestados  somente os materiais bibliográficos (livros, catálogos de exposições  e folhetos) cadastrados no banco de dados.</p>
+				
+				<h3>Como Pesquisar os Materiais</h3>
+				<p>O CCE_SP não possui espaço ou terminais disponíveis para consulta ou pesquisa  no momento. O usuário deverá informar os materiais de interesse, consultando previamente o Catálogo Online, disponível na Internet.</p>
+				
+				<h3>Como emprestar o material bibliográfico  do acervo CCE_SP:</h3>
+				<p>Faça um pré-cadastramento preenchendo o  formulário online.</p>
+				
+				<p>O cadastramento será efetivado, após a apresentação de Documento de identidade original com foto e comprovante de endereço na sede do CCE_SP. Neste momento, o usuário receberá um login e senha que poderá alterar após o primeiro acesso. <a href="/midiateca/inscricoes">Acesse o formulário aqui</a>.</p>
+				
+				<h3>Prazos e Quantidades:</h3>
+				<p>Poderão ser emprestados até 5 itens pelo período de 15 dias, renováveis por mais 15 dias. Os itens reservados não poderão ser renovados.</p>
+				
+				<h3>Penalidades</h3>
+				<p>A devolução fora do prazo resultará na suspensão pelo mesmo número de dias em atraso.</p>
+				
+				<h3><a href="/system/downloads/5/original/regulamento-emprestimo.pdf" target="_blank">Faça o Download do Regulamento Completo</a></h3>
+				<p>(colocar última versão do ícone do PDF)</p>
+				
+				<h3>Reservas e Renovações on-line</h3>
+				<p>Os usuários cadastrados na midiateca poderão realizar reservas e renovações de empréstimo pela internet, mediante uma senha,  desde que não possua itens em atraso.</p>
+				
+				<h3>Disseminação Seletiva da Informação - DSI</h3>
+				<p>Ao ser cadastrado na Biblioteca, o usuário pode consultar novidades da sua área de interesse acessando a área restrita do catálogo da midiateca. </p>
+				
+				<h3>Catálogo on-line</h3>
+				<p>Disponível para pesquisa de todos os materiais catalogados na Midiateca  o acesso ao catálogo online é livre, mas somente os usuários cadastrados terão acesso à área restrita dos serviços de Reservas e Renovações e DSI. <a href="http://ccebrasil.phl-net.com.br">Clique aqui para consultar</a>.</p>
+			</div>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

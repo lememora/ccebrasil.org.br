@@ -1,0 +1,12 @@
+<p>
+  <%= f.label "Título" %><br />
+  <%= f.text_field :title, :size => 62 %>
+</p>
+
+<p>
+	<%= f.label "Arquivo MP3" %><br/>
+	<% if @project_audio.prj_audio.exists? -%>
+		<%= @project_audio.prj_audio.url %><br/>
+	<% end %>
+	<%= f.file_field :prj_audio %>
+</p>

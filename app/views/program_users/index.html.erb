@@ -1,0 +1,24 @@
+<h1>Usuários - Programação</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+  </tr>
+
+<% @program_users.each do |program_user| %>
+  <tr>
+    <td><%=h program_user.name %></td>
+    <td><%=h program_user.email %></td>
+    <td><%= link_to 'Exibir', program_user %></td>
+    <td><%= link_to 'Editar', edit_program_user_path(program_user) %></td>
+    <td><%= link_to 'Remover', program_user, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% link_to 'Novo usuário', new_program_user_path %>
+<br/>
+<%= link_to 'Excel', "/program_users/excel" %>

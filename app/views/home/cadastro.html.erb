@@ -1,0 +1,154 @@
+<body class="cadastro">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_cadastro" class="umalinha" title="Cadastro">Cadastro<span>&nbsp;</span></h2>
+			<h3>Preencha os campos ao lado e cadastre-se</h3>
+
+			<p>Caso você queira receber informações da programação, convites e atividades especiais do CCE_SP, cadastre-se ao lado e faça parte do nosso banco de dados.</p>
+			
+			<p>Para retirar o seu cadastro, digite abaixo seu email e clique no botão "eliminar cadastro".</p>
+			
+			<%= content_tag(:p, flash[:remove_usuario], :style => "color:red") if flash[:remove_usuario] %>
+			
+			<% form_for :user, :url => { :action => :remove_usuario, :method => :post }, :html=>{ :id => "cancelar_form", :class => "form after" } do |f| %>
+				<ul>
+					<li>
+						<%= f.text_field :email, :class => "ipt_txt", :value => "+ email", :id => "cancel_email" %><br />
+						<input type="submit" id="cancelar_submit" value="eliminar cadastro" title="eliminar cadastro" />
+					</li>
+				</ul>
+			<% end -%>		
+		</div>
+		
+		<div id="column">
+			
+			<%= content_tag(:p, flash[:novo_usuario], :style => "color:red") if flash[:novo_usuario] %>
+			
+			<% form_for :user, :url => { :action => :novo_usuario, :method => :post }, :html=>{ :onsubmit => "return check_basic_form();", :id => "form_cadastro_news", :class => "form form_cadastro" } do |f| %>				
+				<ul>
+					<li><strong>Se deseja apenas receber nossa newsletter, preencha abaixo.</strong></li>
+					<li class="tam_a clear">
+						<label for="cad_nome1">+ nome</label><br />
+						<%= f.text_field :name, :class => "ipt_txt tam_a", :id => "basic_name" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_email1">+ email</label><br />
+						<%= f.text_field :email, :class => "ipt_txt tam_a", :id => "basic_email" %><br />						
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_area">+ área de atuação</label><br />
+						<%= f.text_field :activity, :class => "ipt_txt tam_a", :id => "basic_activity" %>
+						<%= f.check_box :deseja_receber, :class => "ipt_check" %>
+						<label for="cad_news">Deseja receber informações do CCE_SP?</label>
+					</li>
+					<li class="tam_a clear">
+						<input type="submit" value="Enviar" class="submit" title="Enviar" />
+					</li>
+				</ul>
+				<div class="clear"></div>
+			<% end -%>
+			
+			<% form_for :user, :url => { :action => :novo_usuario, :method => :post }, :html=>{ :onsubmit => "return check_complete_form();", :id => "form_cadastro_camplet", :class => "form form_cadastro" } do |f| %>
+				<ul>
+					<li><strong>Para cadastro completo e mala-direta:</strong></li>
+					<li class="tam_a clear">
+						<label for="cad_nome">+ nome <span>*</span></label><br />
+						<%= f.text_field :name, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_b fleft">
+						<label for="cad_end">+ endereço residencial <span>*</span></label><br />
+						<%= f.text_field :endereco_residencial, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_bairro">+ bairro <span>*</span></label><br />
+						<%= f.text_field :bairro_residencial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_cidade">+ cidade <span>*</span></label><br />
+						<%= f.text_field :cidade_residencial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_d fleft">
+						<label for="cad_estado">+ uf <span>*</span></label><br />
+						<%= f.text_field :uf_residencial, :class => "ipt_txt tam_e" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_cep">+ cep <span>*</span></label><br />
+						<%= f.text_field :cep_residencial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_tel_1">+ telefone 1 <span>*</span></label>(inserir DDI + DDD). Por ex.: 55 11 9999 9999<br />
+						<%= f.text_field :phone_1_number, :class => "ipt_txt tam_d" %>						
+						<%= f.select :phone_1_kind, User::KIND_OPTIONS, {:prompt => "Tipo de contato 1"}, :class => "select" %>	
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_tel_2">+ telefone 2 <span>*</span></label>(inserir DDI + DDD). Por ex.: 55 11 9999 9999<br />
+						<%= f.text_field :phone_2_number, :class => "ipt_txt tam_d" %>						
+						<%= f.select :phone_2_kind, User::KIND_OPTIONS, {:prompt => "Tipo de contato 2"}, :class => "select" %>						
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_email2">+ email <span>*</span></label><br />
+						<%= f.text_field :email, :class => "ipt_txt tam_a" %><br />
+						<%= f.check_box :deseja_receber, :class => "ipt_check" %>
+						<label for="cad_news">Deseja receber informações do CCE_SP?</label>
+					</li>
+					<li class="tam_b clear">
+						<label for="cad_home">+ homepage <span>*</span></label><br />
+						<%= f.text_field :homepage, :class => "ipt_txt tam_b" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_atividade">+ atividade profissional <span>*</span></label><br />
+						<%= f.text_field :atividade_profissional, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_empresa">+ empresa <span>*</span></label><br />
+						<%= f.text_field :empresa, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_end_comer">+ endereço comercial <span>*</span></label><br />
+						<%= f.text_field :endereco_comercial, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_bairro_comer">+ bairro <span>*</span></label><br />
+						<%= f.text_field :bairro_comercial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_cidade_comer">+ cidade <span>*</span></label><br />
+						<%= f.text_field :cidade_comercial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_d fleft">
+						<label for="cad_estado_comer">+ uf <span>*</span></label><br />
+						<%= f.text_field :uf_comercial, :class => "ipt_txt tam_e" %>
+					</li>
+					<li class="tam_c fleft">
+						<label for="cad_cep_comer">+ cep <span>*</span></label><br />
+						<%= f.text_field :cep_comercial, :class => "ipt_txt tam_d" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_cargo">+ cargo na empresa <span>*</span></label><br />
+						<%= f.text_field :cargo_na_empresa, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_a clear">
+						<label for="cad_area2">+ área de atuação da empresa <span>*</span></label><br />
+						<%= f.text_field :area_atuacao_da_empresa, :class => "ipt_txt tam_a" %>
+					</li>
+					<li class="tam_a clear">
+					 * campos marcados com asterisco são de prenchimento obrigatório
+					</li>
+					<li class="tam_a clear">
+						<input type="submit" value="Enviar" class="submit" title="Enviar" />
+					</li>
+				</ul>
+				<div class="clear"></div>
+			<% end -%>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

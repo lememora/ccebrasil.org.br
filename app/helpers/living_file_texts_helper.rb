@@ -1,0 +1,2 @@
+module LivingFileTextsHelper
+end

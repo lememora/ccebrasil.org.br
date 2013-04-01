@@ -1,0 +1,79 @@
+<body class="midiateca">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_midiateca" class="umalinha" title="Midiateca">Midiateca<span>&nbsp;</span></h2>
+			<h3>Links</h3>
+			
+			<p>Se você procura por bibliotecas e catálogos nacionais e internacionais, segue ao lado uma lista com muito material. Aproveite!</p>
+			
+			<ul id="menu_midiateca_sidebar" class="menu_sidebar">
+				<li id="sidebar_item1"><a href="/midiateca" title="sobre a midiateca">sobre a midiateca<span>&nbsp;</span></a></li>
+				<li id="sidebar_item2"><a href="/midiateca/servicos" title="serviços">serviços<span>&nbsp;</span></a></li>
+				<li id="sidebar_item3"><a href="http://ccebrasil.phl-net.com.br" title="catálogo online">catálogo online<span>&nbsp;</span></a></li>
+				<li id="sidebar_item4" class="selected"><a href="/midiateca/links" title="links midiateca">links midiateca<span>&nbsp;</span></a></li>
+				<li id="sidebar_item5"><a href="/midiateca/contato" title="contato">contato<span>&nbsp;</span></a></li>
+			</ul>
+		</div>
+		
+		<div id="column">
+			<div id="midiateca_links">
+				<h3>Principais catálogos coletivos espanhóis</h3>
+				<dl>
+			    	<dt><a href="http://www.aecid.es/web/es/bibliotecas/catalogos/">Bibliotecas AECID</a></dt>
+			    	<dd>As Bibliotecas da Agência Espanhola de Cooperação Internacional para o Desenvolvimento, destacam-se entre as mais importantes unidades de  informação especializada  da Europa.</dd>
+					<dt><a href="http://www.bne.es/es/Catalogos/">Biblioteca Nacional da Espanha</a></dt>
+					<dd>Centro de referência para a investigação da cultura hispânica, a BNE dispõe de três milhões de registros bibliográficos de diferentes tipos de materiais.</dd>
+					<dt><a href="http://www.mcu.es/bibliotecas/MC/CBPE/index.html">Bibliotecas Públicas da Espanha</a></dt>
+					<dd>Por iniciativa da “Dirección General del Libro, Archivos y Bibliotecas”, o catálogo de Bibliotecas Públicas espanholas está disponível desde 1996 e permite o acesso a mais de nove milhões de registros em 52 Bibliotecas Públicas do Estado (BPE) e em 15 redes de bibliotecas públicas de Comunidades Autônomas. Pode ser acessado na página do Ministério da Cultura da Espanha.</dd>
+					<dt><a href="http://rebiun.crue.org/cgi-bin/rebiun/O7205/ID1e273c4e?ACC=101">REBIUN absysnet</a></dt>
+					<dd>Permite consultar os acervos de 70 bibliotecas universitárias e de investigação espanholas.	</dd>	    	
+			    </dl>
+				<h3>Catálogos de Centros Culturais da Espanha e Centros de Formação</h3>
+				<dl>
+					<dt><a href="http://catalogo.puntobiblio.com/">Centro Cultural da Espanha Córdoba, Argentina</a></dt>					
+					<dt><a href="http://190.41.25.199/cgi-bin/abwebp.exe">Centro Cultural da Espanha em Lima</a></dt>
+					<dt><a href="http://www.juandesalazar.org.py/biblioteca.php">Centro Cultural da Espanha Juan de Salazar, Asunción</a></dt>
+					<dt><a href="http://www.ccecr.org/cce/index.php?option=com_content&task=view&id=335&Itemid=164">Centro Cultural da Espanha em San José, Costa Rica</a></dt>
+					<dt><a href="http://200.87.199.98/fmi/iwp/cgi?-db=Catalogo2009&-loadframes">Centro de Formación Santa Cruz de la Sierra, Bolívia</a></dt>	
+					<dt><a href="http://www.aecid-cf.org.gt/main.php?id_area=174">Centro de Formação da Cooperação Espanhola Antigua, Guatemala</a></dt>
+				</dl>
+				
+				<h3>Catálogos Coletivos Nacionais</h3>
+				<dl>
+					<dt><a href="http://www.bn.br/">Biblioteca Nacional do Brasil</a></dt>
+					<dd>Catálogo com mais de um milhão de itens bibliográficos a partir do século XVIII</dd>
+					<dt><a href="http://www.ibict.br/secao.php?cat=CCN">Catálogo Coletivo Nacional de Publicações Periódicas</a></dt>
+					<dd>Instituto Brasileiro de Informação em Ciência e Tecnologia IBICT: O CCN é aberto à livre participação das bibliotecas que possuam acervos automatizados e relevantes de publicações periódicas em C&T.</dd>
+					<dt><a href="http://www.usp.br/sibi/">Catálogo Coletivo da USP – Universidade de São Paulo</a></dt>
+					<dd>Acesso a mais de dois milhões de itens bibliográficos.</dd>
+					<dt><a href="http://www.prefeitura.sp.gov.br/cidade/secretarias/cultura/bibliotecas/catalogo_eletronico/">Bibliotecas Públicas da Cidade de São Paulo - Secretaria de Cultura. Sistema Municipal de Bibliotecas</a></dt>
+					<dd>Acesso aos acervos das Bibliotecas Públicas da Cidade de São Paulo.</dd>
+				</dl>
+	
+				<h3>Catálogos Mundiais</h3>
+				<dl>
+					<dt><a href="http://www.wdl.org/">Biblioteca Digital Mundial da UNESCO</a></dt>
+					<dd>Iniciativa conjunta da UNESCO, da Biblioteca do Congresso Americano e da Biblioteca de Alexandria, fornece o acesso a mil documentos digitais.</dd>
+					
+					<dt><a href="http://www.europeana.eu/portal/">Europeana</a></dt>
+					<dd>Financiada pela Comissão Européia e Estados Membros da União, a Europeana permite o acesso a  4 milhões de itens digitais.</dd>
+				</dl>
+				
+				<h3>Blog de Biblioteconomia e Ciência da Informação</h3>
+				<dl>
+					<dt><a href="http://www.ndc.uff.br/portaldereferencia/sites.asp?categorias=50">Núcleo de Documentação da Universidade Federal Fluminense</a></dt>
+					<dd>Esta página relaciona blogs sobre biblioteconomia, gestão, ciência e arquitetura da informação.</dd>
+				</dl>
+			</div>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

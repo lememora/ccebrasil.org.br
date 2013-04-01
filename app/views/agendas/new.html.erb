@@ -1,0 +1,13 @@
+<h1>Agenda :: Novo</h1>
+
+<% form_for(@agenda) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => {:f => f} %>
+  	
+  <p>
+    <%= f.submit 'Criar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', agendas_path %>

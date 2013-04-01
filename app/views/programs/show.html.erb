@@ -1,0 +1,66 @@
+<h1>Programação</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @program.title %>
+</p>
+
+<p>
+  <b>Data de inicio:</b>
+  <%=h "#{@program.day}.#{@program.month}.#{@program.year}" %>
+</p>
+
+<p>
+  <b>Data de encerramento:</b>
+  <%=h "#{@program.finish_day}.#{@program.finish_month}.#{@program.finish_year}" %>
+</p>
+
+<p>
+  <b>Subtitulo:</b>
+  <%=h @program.subtitle %>
+</p>
+
+<p>
+  <b>Onde:</b>
+  <%=h @program.where %>
+</p>
+
+<p>
+  <b>Quando:</b>
+  <%=h @program.when %>
+</p>
+
+<p>
+  <b>Resumo:</b>
+  <%=h @program.extract %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%=h @program.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @program.url %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @program.program_image.exists? then %>
+		<%= image_tag @program.program_image.url(:thumb) %><br/>
+	<% end %>
+</p>
+
+<p>
+  <b>Inscrições abertas / aceitar inscrições:</b>
+  <% if @program.open_to_register -%>
+	Sim
+  <% else -%>
+	Não
+  <% end -%>
+</p>
+
+
+<%= link_to 'Editar', edit_program_path(@program) %> |
+<%= link_to 'Voltar', programs_path %>

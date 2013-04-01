@@ -1,0 +1,22 @@
+<h1>Imagem do Mês</h1>
+
+<table>
+  <tr>
+    <th>Mês</th>
+    <th>Ano</th>
+  </tr>
+
+<% @calendar_images.each do |calendar_image| %>
+  <tr>
+    <td><%=h calendar_image.month %></td>
+    <td><%=h calendar_image.year %></td>
+    <td><%= link_to 'Exibir', calendar_image %></td>
+    <td><%= link_to 'Editar', edit_calendar_image_path(calendar_image) %></td>
+    <td><%= link_to 'Remover', calendar_image, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova imagem', new_calendar_image_path %>

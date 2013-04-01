@@ -1,0 +1,41 @@
+<h1>Notícias</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @article.title %>
+</p>
+
+<p>
+  <b>Bolsas e Convocatórias:</b>
+  <% if @article.bolsas_e_convocatorias -%>
+	sim
+  <% else -%>
+	não
+  <% end -%>
+</p>
+
+<p>
+  <b>Subtitulo:</b>
+  <%=h @article.subtitle %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%=h @article.description %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @article.article_image.exists? -%>
+		<%= image_tag @article.article_image.url(:thumb) %><br/>
+	<% end -%>
+</p>
+
+<p>
+  <b>Legenda:</b>
+  <%=h @article.image_desc %>
+</p>
+
+
+<%= link_to 'Editar', edit_article_path(@article) %> |
+<%= link_to 'Voltar', articles_path %>

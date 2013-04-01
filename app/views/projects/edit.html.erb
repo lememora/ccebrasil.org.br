@@ -1,0 +1,23 @@
+<h1>Projetos :: Edição</h1>
+
+<% form_for(@project, :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => { :f => f } %>
+  
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<p>
+  <b>Galeria de Imagens</b> <%= link_to '[editar]', project_project_additional_images_path(@project) %><br/>
+  <b>Textos</b> <%= link_to '[editar]', project_project_texts_path(@project) %><br/>
+  <b>Documentos</b> <%= link_to '[editar]', project_project_documents_path(@project) %><br/>
+  <b>Vídeos</b> <%= link_to '[editar]', project_project_videos_path(@project) %><br/>
+  <b>Audios</b> <%= link_to '[editar]', project_project_audios_path(@project) %><br/>
+  <b>Links</b> <%= link_to '[editar]', project_project_links_path(@project) %><br/>
+</p>
+
+<%= link_to 'Exibir', @project %> |
+<%= link_to 'Voltar', projects_path %>

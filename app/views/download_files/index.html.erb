@@ -1,0 +1,21 @@
+<h1>Banco de Mídias</h1>
+
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Arquivo</th>
+  </tr>
+
+<% @download_files.each do |download_file| %>
+  <tr>
+    <td><%=h download_file.title %></td>
+    <td><%=h download_file.download.url %></td>
+    <td><%= link_to 'Editar', edit_download_file_path(download_file) %></td>
+    <td><%= link_to 'Remover', download_file, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo download', new_download_file_path %>

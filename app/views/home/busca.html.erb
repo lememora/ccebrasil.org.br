@@ -1,0 +1,117 @@
+<body class="pesquisa">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_pesquisa" class="umalinha" title="Pesquisa">Pesquisa<span>&nbsp;</span></h2>
+			<h3>Verifique se encontrou o que precisa</h3>
+			<p>Caso não tenha encontrado oque precisa, você também pode acessar o Mapa do Site e verificar links principais a todo o conteúdo disponível em nosso site, ou, caso esteja procurando algum autor/artista, textos críticos, imagens ou vídeos, entre diretamente em Arquivo Vivo. Se mesmo assim não encontrar oque você precisa, escreva pra gente através do linl Contato que tentaremos lhe ajudar. </p>
+			
+			<p>Se quisermos, podemos colocar logo abaixo, links para áreas ou assuntos com grande possibilidade de serem procurados. Desta forma facilitaria o acesso.</p>
+		</div>
+		
+		<div id="column">
+			<div id="pesquisa">
+				<h2><strong>resultados para a palavra:</strong> <span>“<%= @keyword %>”</span></h2>
+				<ul>
+					<% unless @articles.empty? %>					
+						<li>
+							<h3><a href="/noticias">Notícias</a></h3>
+							<br/>
+							<% @articles.each do |article| -%>
+								<p>
+									<a href="/noticia/<%= article.permalink %>">
+										<% article.title.gsub("#{@keyword}", "<span class='highlight_pesquisa'>#{@keyword}</span>") %>
+										<%= highlight(article.title, @keyword, :highlighter => '<span class="highlight_pesquisa">\1</span>') %>
+										<%
+											extract = excerpt(article.description, @keyword, :radius => 200)
+											unless extract.blank?
+												extract = highlight(extract, @keyword, :highlighter => '<span class="highlight_pesquisa">\1</span>') 
+												extract = "<br/>#{extract}"
+											end
+										%>
+										<% extract %>
+									</a>
+								</p>
+							<% end -%>				
+						</li>
+					<% end -%>	
+					<% unless @programs.empty? %>				
+						<li>
+							<h3><a href="/programacao">Programação</a></h3>
+							<br/>
+							<% @programs.each do |program| -%>
+								<p>
+									<a href="/programa/<%= program.id %>/<%= program.permalink %>">
+										<% program.title.gsub("#{@keyword}", "<span class='highlight_pesquisa'>#{@keyword}</span>") %>
+										<%= highlight(program.title, @keyword, :highlighter => '<span class="highlight_pesquisa">\1</span>') %>
+									</a>
+								</p>
+							<% end -%>						
+						</li>
+					<% end -%>
+					<% unless @projects.empty? %>
+						<li>
+							<h3><a href="/projetos">Projetos</a></h3>
+							<br/>
+							<% @projects.each do |project| -%>
+								<p>
+									<a href="/projeto/<%= project.permalink %>">
+										<% project.title.gsub("#{@keyword}", "<span class='highlight_pesquisa'>#{@keyword}</span>") %>
+										<%= highlight(project.title, @keyword, :highlighter => '<span class="highlight_pesquisa">\1</span>') %>
+									</a>
+								</p>
+							<% end -%>						
+						</li>
+					<% end -%>
+					<% unless @living_files.empty? %>
+						<li>
+							<h3><a href="/arquivo_vivo">Arquivo Vivo</a></h3>
+							<br/>
+							<% @living_files.each do |living_file| -%>
+								<p>
+									<a href="/arquivo_vivo/<%= living_file.permalink %>">
+										<% living_file.title.gsub("#{@keyword}", "<span class='highlight_pesquisa'>#{@keyword}</span>") %>
+										<%= highlight(living_file.title, @keyword, :highlighter => '<span class="highlight_pesquisa">\1</span>') %>
+									</a>
+								</p>
+							<% end -%>						
+						</li>
+					<% end -%>				
+				</ul>				
+			</div>
+			
+			<%
+				biggest_obj = nil;
+				biggest_value = 0;
+				if @articles_size > biggest_value
+					biggest_obj = @articles;
+					biggest_value = @articles_size;
+				end
+				if @programs_size > biggest_value
+					biggest_obj = @programs;
+					biggest_value = @programs_size;
+				end				
+				if @projects_size > biggest_value
+					biggest_obj = @projects;
+					biggest_value = @projects_size;
+				end	
+				if @living_files_size > biggest_value
+					biggest_obj = @living_files;
+					biggest_value = @living_files_size;
+				end
+			%>	
+			<% unless biggest_value < 6 -%>		
+				<p class="pages">páginas: <%= will_paginate(biggest_obj) %></p>
+			<% end -%>
+			
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

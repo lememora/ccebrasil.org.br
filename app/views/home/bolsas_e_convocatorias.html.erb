@@ -1,0 +1,64 @@
+<body class="noticias">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_noticias2" class="umalinha" title="Notícias">Notícias<span>&nbsp;</span></h2>
+			<h3>Espaço em rede</h3>
+			<p>Para divulgação de assuntos relacionados ao CCE_SP, que acontecem aqui e acolá.</p>
+			<p>Também divulga editais, residências, apoio a projetos, entre outras novidades.</p>
+			<ul id="lista_noticias_sidebar">
+				<li><a href="/bolsas_e_convocatorias">Bolsas e Convocatórias</a></li>
+			</ul>
+		</div>
+		
+		<div id="column">
+			<div id="noticias_box">
+							
+				<ul>
+					<% unless params[:page].to_i > 1 -%>
+						<% unless @articles.first.article_image.url == "/article_images/original/missing.png" -%>
+							<li class="noticia_destaque after">						
+								<%= image_tag @articles.first.article_image.url(:thumb), :alt => "#{@articles.first.title}", :title => "#{@articles.first.title}" %>
+								<h3 class="dtstart">12.05.2009 <a href="/noticia/<%= @articles.first.permalink %>"><%= @articles.first.title %></a></h3>
+								<p><%= @articles.first.subtitle %></p>
+								<a href="/noticia/<%= @articles.first.permalink %>" title="+++++" class="link_mais">+</a>
+							</li>
+						<% end -%>
+					<% end -%>
+					<%
+						if params[:page].to_i > 1
+							init = 0
+						else
+							if @articles.first.article_image.url == "/article_images/original/missing.png"
+								init = 0
+							else
+								init = 1
+							end
+						end
+					%>
+					<% unless @articles.size == 1 and init == 1 -%>
+						<% init.upto(@articles.size - 1) do |i| -%>
+							<li>
+								<h3>10.05.2009 <a href="/noticia/<%= @articles[i].permalink %>"><%= @articles[i].title %></a></h3>
+								<p><a href="/noticia/<%= @articles[i].permalink %>"><%= @articles[i].subtitle %></a></p>
+							</li>
+						<% end -%>
+					<% end -%>			
+				</ul>
+				
+				<% if @multipage -%>	
+					<p class="pages">páginas: <%= will_paginate(@articles) %></p>
+				<% end -%>
+				
+			</div>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

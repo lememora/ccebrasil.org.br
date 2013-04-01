@@ -1,0 +1,21 @@
+<h1>Identificação</h1>
+
+<% form_tag sessions_url, :method => :post do %>
+
+	<%= content_tag(:p, flash[:notice], :style => "color:red") if flash[:notice] %>
+
+	<p>
+		<b>Email</b><br />
+		<%= text_field_tag :email, params[:email] %>
+	</p>
+	
+	<p>
+		<b>Senha</b><br />
+		<%= password_field_tag :password, "" %>
+	</p>
+
+	<p>
+		<%= submit_tag "Ok" %>
+	</p>
+
+<% end %>

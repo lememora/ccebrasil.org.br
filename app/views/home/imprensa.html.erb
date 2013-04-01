@@ -1,0 +1,62 @@
+<body class="imprensa">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_imprensa" class="umalinha" title="Imprensa">Imprensa<span>&nbsp;</span></h2>
+			<h3>Releases e imagens para divulgação</h3>			
+			
+			<%= content_tag(:p, flash[:journalist_notice], :style => "color:red") if flash[:journalist_notice] %>
+			<% unless session[:journalist_id] -%>
+				<p>Caso o evento que você procura não esteja aqui, ou para mais informações, envie um email para <a href="mailto:imprensa@ccebrasil.org.br">imprensa@ccebrasil.org.br</a>.</p>				
+				<p>Se você já possui o seu usuário e senha, preencha os campos abaixo e tenha acesso ao conteúdo que procura:</p>
+				<% form_tag :controller => :sessions, :action => :login_journalist, :method => :post do %>
+					<ul>
+						<li>
+							<%= text_field_tag :email, "+ usuário", :class => "ipt_txt" %>
+						</li>
+						<li>
+							<%= password_field_tag :password, "", :class => "ipt_txt" %>
+						</li>
+						<li><input type="submit" value="ok" class="submit" title="ok" /></li>
+					</ul>
+				<% end -%>
+			<% else -%>
+				Olá <%= session[:journalist_nm] %>, <%= link_to "[sair]", "/logout_imprensa" %>
+			<% end -%>
+		</div>
+		
+		<div id="column">
+			<!-- =============================== IMPRENSA ================================= -->
+			<ul id="imprensa">
+				<% @press_kits.each do |press_kit| -%>
+					<li class="vevent">
+						<h3><%= press_kit.title %></h3>
+						<ul class="item_material">
+							<% press_kit.press_documents.each do |press_document| %>
+								<% unless press_document.protected_file and session[:journalist_id].nil? -%>
+									<% if press_document.presskit_thumb.exists? -%>
+										<li><a href="<%= press_document.presskit.url %>">
+											<%= image_tag press_document.presskit_thumb.url(:thumb), :title => press_document.title, :alt => press_document.title %>
+										</a></li>
+									<% else -%>
+										<li><a href="<%= press_document.presskit.url %>" class="release_link" title="<%= press_document.title %>">
+											<%= press_document.title %>
+										</a></li>
+									<% end -%>
+								<% end -%>
+							<% end -%>
+						</ul>
+					</li>
+				<% end -%>	
+			</ul>
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

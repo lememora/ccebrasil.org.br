@@ -1,0 +1,24 @@
+<p>
+  <%= f.label "Título" %><br />
+  <%= f.text_field :title, :size => 62 %>
+</p>
+
+<p>
+	<%= f.label "Imagem" %> <small>[tamanho: 55x55]</small><br/>
+	<% if @press_document.presskit_thumb.exists? -%>
+		<%= image_tag @press_document.presskit_thumb.url(:thumb) %><br/>
+	<% end %>
+	<%= f.file_field :presskit_thumb %>
+</p>
+
+<p>
+	<%= f.check_box :protected_file %> Acesso restrito
+</p>
+
+<p>
+	<%= f.label "Arquivo" %><br/>
+	<% if @press_document.presskit.exists? -%>
+		<%= @press_document.presskit.url %><br/>
+	<% end %>
+	<%= f.file_field :presskit %>
+</p>

@@ -1,0 +1,25 @@
+<h1>Notícias</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>
+    <th>Titulo</th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/articles/#{article.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/articles/#{article.id}/lower", :method => :put %>
+	</td>
+    <td><%=h article.title %></td>
+    <td><%= link_to 'Exibir', article %></td>
+    <td><%= link_to 'Editar', edit_article_path(article) %></td>
+    <td><%= link_to 'Remover', article, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova notícia', new_article_path %>

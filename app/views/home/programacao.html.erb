@@ -1,0 +1,191 @@
+<body class="programacao">
+
+<div id="site">
+
+	<%= render :partial => "header" %>
+	
+	<div id="content">
+		<div id="sidebar">
+			<h2 id="txt_programacao" class="umalinha" title="Programação">Programação<span>&nbsp;</span></h2>
+			<h3>O que está acontecendo</h3>
+			<p>Exposições, espetáculos, oficinas e seminários estão entre as muitas atividades que o CCE_SP realiza e apóia.</p>
+			<p>Há duas formas de você navegar: uma, pela escolha do tipo de atividade que deseja participar; outra, pela data. Utilize as ferramentas abaixo ou escolha a data de interesse no calendário ao lado.</p>
+			
+			<form id="pesquisa_programacao" class="form" action="/programacao">
+				<select name="programacao_tipo" id="programacao_tipo" class="select" onchange="jump(this, 'parent')">
+					<option value="0">+ selecione um tipo de atividade</option>
+					<% @program_categories.each do |program_category| -%>
+						<option value="<%= program_category.permalink %>"><%= program_category.category %></option>
+					<% end -%>
+				</select>
+				<script type="text/javascript">
+					// <![CDATA[
+				  	function jump(select_element, target_frame){ 
+						eval(target_frame+".location='/programacao/categoria/"+select_element.options[select_element.selectedIndex].value+"'"); 
+					} 
+					// ]]>
+				</script>
+				<!--<p><input type="submit" value="Enviar" class="submit" title="Enviar" /></p>-->
+			</form>
+			
+	        <dl id="programacao_impressa_lista">
+	        	<dt>+ Baixe aqui o PDF da programação impressa:</dt>	        	
+	        	<% @program_downloads.each do |program_download| -%>
+					<dd><a href="<%= program_download.program_download.url %>" target="_blank"><%= "#{program_download.month}.#{program_download.year}" %></a></dd>
+				<% end -%>
+	        </dl>
+		</div>
+		
+		<div id="column">
+			<a href="#programacao_calendario_anos" class="access">escolher ano</a>
+			<a href="#programacao_calendario_meses" class="access">escolher mês</a>
+			<a href="#programacao_calendario_dias" class="access">escolher dia</a>
+			<a href="#programacao_imagem" class="access">pular para destaque</a>
+			<a href="#programacao_lista" class="access">pular para lista</a>
+			<div id="programacao_calendario">
+				<p id="programacao_calendario_anos">
+					<% @years.each do |year| -%>
+						<% if year.year == @year -%>
+							<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= year.year %>/1/1" id="ano_<%= year.year %>" class="selected"><%= year.year %></a>
+						<% else -%>
+							<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= year.year %>/1/1" id="ano_<%= year.year %>"><%= year.year %></a>
+						<% end -%>
+					<% end -%>
+				</p>
+				<p id="programacao_calendario_meses">
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/1/1" id="mes_1" <%= 'class="selected"' if @month == 1 %>>JAN</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/2/1" id="mes_2" <%= 'class="selected"' if @month == 2 %>>FEV</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/3/1" id="mes_3" <%= 'class="selected"' if @month == 3 %>>MAR</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/4/1" id="mes_4" <%= 'class="selected"' if @month == 4 %>>ABR</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/5/1" id="mes_5" <%= 'class="selected"' if @month == 5 %>>MAI</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/6/1" id="mes_6" <%= 'class="selected"' if @month == 6 %>>JUN</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/7/1" id="mes_7" <%= 'class="selected"' if @month == 7 %>>JUL</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/8/1" id="mes_8" <%= 'class="selected"' if @month == 8 %>>AGO</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/9/1" id="mes_9" <%= 'class="selected"' if @month == 9 %>>SET</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/10/1" id="mes_10" <%= 'class="selected"' if @month == 10 %>>OUT</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/11/1" id="mes_11" <%= 'class="selected"' if @month == 11 %>>NOV</a>
+					<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/12/1" id="mes_12" <%= 'class="selected"' if @month == 12 %>>DEZ</a>
+				</p>
+				<p id="programacao_calendario_dias">
+					<% 1.upto(31) do |i| -%>
+						<% if i == @day -%>
+							<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/<%= @month %>/<%= i %>" id="dia_<%= i %>" class="selected"><%= i %></a>
+						<% else -%>
+							<a href="/programacao<%= "/categoria/#@category" unless @category.nil? %>/<%= @year %>/<%= @month %>/<%= i %>" id="dia_<%= i %>"><%= i %></a>
+						<% end -%>
+					<% end -%>				
+				</p>
+			</div>
+			
+			<div id="programacao_imagem" style="display:none;">
+				<% unless @calendar_image.nil? -%>
+					<a href="#" onclick="$('#programacao_imagem').hide();$('#programacao_imagem_show').show();" class="fright">[x] fechar imagem</a>
+					<%= image_tag @calendar_image.calendar_image.url(:approved), :alt => "#{@calendar_image.credits}", :title => "#{@calendar_image.credits}" %>
+					<p class="legenda"><a href="<%= @calendar_image.url %>" target="_blank"><%= @calendar_image.credits %></a></p>
+				<% end -%>
+			</div>
+			<div id="programacao_imagem_show">
+				<% unless @calendar_image.nil? -%>
+					<a href="#" onclick="$('#programacao_imagem').show();$('#programacao_imagem_show').hide();" class="fright">[+] imagem do mês</a>
+				<% end -%>
+			</div>
+				
+			
+			<ul class="programacao_lista" id="programacao_lista">
+				<% unless @program.nil? -%>
+					<li class="vevent">
+						<h4><span class="post-date"><%= "#{@program.day}.#{@program.month}.#{@program.year}" %>
+						<% unless @program.day == @program.finish_day and @program.month == @program.finish_month and @program.year == @program.finish_year -%>
+							<%= " - #{@program.finish_day}.#{@program.finish_month}.#{@program.finish_year}" %>
+						<% end -%>
+						</span> | <span class="post-category"><%= @program.program_category.category %></span></h4>
+						<h3 class="summary"><%= @program.title %></h3>
+					
+						<div class="description">
+							<p><%= @program.description %></p>
+						</div>
+					
+						<ol class="meta_info">
+							<li class="dtstart"><strong>Data</strong > <%= @program.when %></li>
+							<li class="location"><strong>Local</strong> <%= @program.where %></li>
+							<% @program.program_generic_attributes.each do |pga| -%>
+								<% if pga.url.nil? -%>
+									<li class="more"><strong><%= pga.title %></strong> <%= pga.desc %></li>
+								<% else -%>
+									<li class="more"><strong><%= pga.title %></strong> <a href="<%= pga.url %>"><%= pga.desc %></a></li>
+								<% end -%>
+							<% end -%>
+						</ol>
+					
+						<p>
+							<span class="compartilhar">
+								<a href="http://www.addthis.com/bookmark.php" 
+							        onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]');" 
+							        onmouseout="addthis_close();" 
+							        onclick="return addthis_sendto();">
+									<img src="http://s7.addthis.com/static/btn/sm-plus.gif" width="16" height="16" border="0" alt="Compartilhe esta notícia" /> 
+									Partilhar
+								</a>
+							<% unless @program.url.blank? -%>
+								</span> | <a href="<%= @program.url %>">saiba + sobre este projeto</a>
+							<% end -%>
+						</p>
+					    <script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
+					</li>
+				<% end -%>
+				<% @programs.each do |program| -%>
+					<% if @program.nil? or program.id != @program.id -%>						
+						<li class="vevent">
+							<h4><span class="post-date"><%= "#{program.day}.#{program.month}.#{program.year}" %>
+							<% unless program.day == program.finish_day and program.month == program.finish_month and program.year == program.finish_year -%>
+								<%= " - #{program.finish_day}.#{program.finish_month}.#{program.finish_year}" %>
+							<% end -%>
+							</span> | <span class="post-category"><%= program.program_category.category %></span></h4>
+							<h3 class="summary"><%= program.title %></h3>
+				
+							<div class="description">
+								<p><%= program.description %></p>
+							</div>
+				
+							<ol class="meta_info">
+								<li class="dtstart"><strong>Data</strong > <%= program.when %></li>
+								<li class="location"><strong>Local</strong> <%= program.where %></li>
+								<% program.program_generic_attributes.each do |pga| -%>
+									<% if pga.url.nil? -%>
+										<li class="more"><strong><%= pga.title %></strong> <%= pga.desc %></li>
+									<% else -%>
+										<li class="more"><strong><%= pga.title %></strong> <a href="<%= pga.url %>"><%= pga.desc %></a></li>
+									<% end -%>
+								<% end -%>
+							</ol>
+				
+							<p>
+								<span class="compartilhar">
+									<a href="http://www.addthis.com/bookmark.php" 
+								        onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]');" 
+								        onmouseout="addthis_close();" 
+								        onclick="return addthis_sendto();">
+										<img src="http://s7.addthis.com/static/btn/sm-plus.gif" width="16" height="16" border="0" alt="Compartilhe esta notícia" /> 
+										Partilhar
+									</a>
+								<% unless program.url.blank? -%>
+									</span> | <a href="<%= program.url %>">saiba + sobre este projeto</a>
+								<% end -%>
+							</p>
+						    <script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
+						</li>						
+					<% end -%>
+				<% end -%>				
+			</ul>
+			
+			<% if @programs.empty? %>
+				Nenhum evento cadastrado para este mês
+			<% end -%>
+					
+		</div>
+		
+	</div>
+	
+	<%= render :partial => "footer" %>
+
+</div>

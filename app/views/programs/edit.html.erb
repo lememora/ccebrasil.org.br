@@ -1,0 +1,14 @@
+<h1>Programação :: Edição</h1>
+
+<% form_for(@program, :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= render :partial => "form", :locals => {:f => f} %>
+  
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @program %> |
+<%= link_to 'Voltar', programs_path %>

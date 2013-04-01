@@ -1,0 +1,25 @@
+<h1>Agenda</h1>
+
+<table>
+  <tr>
+	<th>Posição</th>
+    <th>Título</th>
+  </tr>
+
+<% @agendas.each do |agenda| %>
+  <tr>
+	<td>
+		<%= link_to 'Up', "/agendas/#{agenda.id}/higher", :method => :put %>
+		<%= link_to 'Dn', "/agendas/#{agenda.id}/lower", :method => :put %>
+	</td>
+    <td><%=h agenda.title %></td>
+    <td><%= link_to 'Exibir', agenda %></td>
+    <td><%= link_to 'Editar', edit_agenda_path(agenda) %></td>
+    <td><%= link_to 'Remover', agenda, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova entrada', new_agenda_path %>

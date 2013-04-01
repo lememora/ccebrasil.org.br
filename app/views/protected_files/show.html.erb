@@ -1,0 +1,31 @@
+<h1>Arquivos Protegidos</h1>
+
+<p>
+  <b>Nome:</b>
+  <%=h @protected_file.name %>
+</p>
+
+<p>
+  <b>Mensagem:</b>
+  <%=h @protected_file.message %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @protected_file.email %>
+</p>
+
+<p>
+  <b>Downloads:</b>
+  <%=h @protected_file.downloads %>
+</p>
+
+<p>
+  <b>Arquivo:</b>
+	<% if @protected_file.pf.exists? -%>
+		<%= @protected_file.pf.url %><br/>
+	<% end %>
+</p>
+
+<%= link_to 'Editar', edit_protected_file_path(@protected_file) %> |
+<%= link_to 'Voltar', protected_files_path %>

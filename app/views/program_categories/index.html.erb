@@ -1,0 +1,23 @@
+<h1>Categorias de Programação</h1>
+
+<table>
+  <tr>
+    <th>Categoria</th>
+	<th>Programas</th>
+  </tr>
+
+<% @program_categories.each do |program_category| %>
+  <tr>
+    <td><%=h program_category.category %></td>
+	<td><%=h program_category.programs.count %></td>
+    <td><%= link_to 'Editar', edit_program_category_path(program_category) %></td>
+	<% if program_category.programs.empty? -%>
+		<td><%= link_to 'Remover', program_category, :confirm => 'Você tem certeza', :method => :delete %></td>
+	<% end -%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova categoria', new_program_category_path %>

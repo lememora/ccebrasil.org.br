@@ -1,0 +1,126 @@
+<h1>Usuários - Programação</h1>
+
+<p>
+  <b>Nome:</b>
+  <%=h @program_user.name %>
+</p>
+
+<p>
+  <b>Programa:</b>
+  <%=h @program_user.program %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @program_user.email %>
+</p>
+
+<p>
+  <b>Nascimento:</b>
+  <%=h @program_user.nasc_dia %> / <%=h @program_user.nasc_mes %> /<%=h @program_user.nasc_ano %>
+</p>
+
+<p>
+  <b>Sexo:</b>
+  <%=h @program_user.sexo %>
+</p>
+
+<p>
+  <b>CPF:</b>
+  <%=h @program_user.cpf %>
+</p>
+
+<p>
+  <b>Fixo:</b>
+  <%=h @program_user.ddd_fixo %> <%=h @program_user.phone_fixo %>
+</p>
+
+<p>
+  <b>Celular:</b>
+  <%=h @program_user.ddd_celular %> <%=h @program_user.phone_celular %>
+</p>
+
+<p>
+  <b>Endereço:</b>
+  <%=h @program_user.end_residencial %> <%=h @program_user.end_residencial_numero %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%=h @program_user.end_residencial_bairro %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%=h @program_user.end_residencial_cidade %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%=h @program_user.end_residencial_estado %>
+</p>
+
+<p>
+  <b>CEP:</b>
+  <%=h @program_user.end_residencial_cep %>
+</p>
+
+<p>
+  <b>Necessidades Especiais:</b>
+  <%=h @program_user.necessidades_especiais %>
+</p>
+
+<p>
+  <b>Cuidados Especiais:</b>
+  <%=h @program_user.cuidados_especiais %>
+</p>
+
+<p>
+  <b>Descreva seus interesses:</b>
+  <%=h @program_user.interesses_desc %>
+</p>
+
+<p>
+  <b>Nacionalidade:</b>
+  <%=h @program_user.nacionalidade %>
+</p>
+
+<p>
+  <b>País:</b>
+  <%=h @program_user.pais %>
+</p>
+
+<p>
+  <b>Passaporte:</b>
+  <%=h @program_user.passaporte %>
+</p>
+
+<p>
+  <b>Instituição:</b>
+  <%=h @program_user.instituicao %>
+</p>
+
+<p>
+  <b>Cargo:</b>
+  <%=h @program_user.cargo %>
+</p>
+
+<p>
+  <b>Unidade de Trabalho:</b>
+  <%=h @program_user.unidade_de_trabalho %>
+</p>
+
+<p>
+  <b>Atividades:</b>
+  <%=h @program_user.atividades %>
+</p>
+
+<p>
+  <b>Interesses:</b>
+  <%=h @program_user.interesses %>
+</p>
+
+
+
+<%= link_to 'Editar', edit_program_user_path(@program_user) %> |
+<%= link_to 'Voltar', program_users_path %>

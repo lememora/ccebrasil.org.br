@@ -1,0 +1,100 @@
+<h1>Usuários - Midiateca</h1>
+
+<p>
+  <b>Nome:</b>
+  <%=h @medialibrary_user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @medialibrary_user.email %>
+</p>
+
+<p>
+  <b>Nascimento:</b>
+  <%=h @medialibrary_user.nasc_dia %> / <%=h @medialibrary_user.nasc_mes %> /<%=h @medialibrary_user.nasc_ano %>
+</p>
+
+<p>
+  <b>Sexo:</b>
+  <%=h @medialibrary_user.sexo %>
+</p>
+
+<p>
+  <b>CPF:</b>
+  <%=h @medialibrary_user.cpf %>
+</p>
+
+<p>
+  <b>Fixo:</b>
+  <%=h @medialibrary_user.ddd_fixo %> <%=h @medialibrary_user.phone_fixo %>
+</p>
+
+<p>
+  <b>Celular:</b>
+  <%=h @medialibrary_user.ddd_celular %> <%=h @medialibrary_user.phone_celular %>
+</p>
+
+<p>
+  <b>Endereço:</b>
+  <%=h @medialibrary_user.end_residencial %> <%=h @medialibrary_user.end_residencial_numero %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%=h @medialibrary_user.end_residencial_bairro %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%=h @medialibrary_user.end_residencial_cidade %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%=h @medialibrary_user.end_residencial_estado %>
+</p>
+
+<p>
+  <b>CEP:</b>
+  <%=h @medialibrary_user.end_residencial_cep %>
+</p>
+
+<p>
+  <b>Necessidades Especiais:</b>
+  <%=h @medialibrary_user.necessidades_especiais %>
+</p>
+
+<p>
+  <b>Cuidados Especiais:</b>
+  <%=h @medialibrary_user.cuidados_especiais %>
+</p>
+
+<p>
+  <b>Interesses:</b>
+  <%=h @medialibrary_user.interesses %>
+</p>
+
+<p>
+  <b>Nacionalidade:</b>
+  <%=h @medialibrary_user.nacionalidade %>
+</p>
+
+<p>
+  <b>País:</b>
+  <%=h @medialibrary_user.pais %>
+</p>
+
+<p>
+  <b>Passaporte:</b>
+  <%=h @medialibrary_user.passaporte %>
+</p>
+
+<p>
+  <b>Atividades:</b>
+  <%=h @medialibrary_user.atividades %>
+</p>
+
+
+<%= link_to 'Editar', edit_medialibrary_user_path(@medialibrary_user) %> |
+<%= link_to 'Voltar', medialibrary_users_path %>

@@ -1,0 +1,35 @@
+<h1>Arquivo Vivo</h1>
+
+<p>
+  <b>Título:</b>
+  <%=h @living_file.title %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%=h @living_file.description %>
+</p>
+
+<p>
+  <b>Imagem:</b><br/>
+  	<% if @living_file.living_file.exists? then %>
+		<%= image_tag @living_file.living_file.url(:final) %><br/>
+	<% end %>
+</p>
+
+<p>
+  <b>Imagem - Créditos:</b>
+  <%=h @living_file.image_credits %>
+</p>
+
+<p>
+  <b>Galeria de Imagens</b> <%= link_to '[editar]', living_file_living_file_additional_images_path(@living_file) %><br/>
+  <b>Textos</b> <%= link_to '[editar]', living_file_living_file_texts_path(@living_file) %><br/>
+  <b>Documentos</b> <%= link_to '[editar]', living_file_living_file_documents_path(@living_file) %><br/>
+  <b>Vídeos</b> <%= link_to '[editar]', living_file_living_file_videos_path(@living_file) %><br/>
+  <b>Audios</b> <%= link_to '[editar]', living_file_living_file_audios_path(@living_file) %><br/>
+  <b>Links</b> <%= link_to '[editar]', living_file_living_file_links_path(@living_file) %><br/>
+</p>
+
+<%= link_to 'Editar', edit_living_file_path(@living_file) %> |
+<%= link_to 'Voltar', living_files_path %>

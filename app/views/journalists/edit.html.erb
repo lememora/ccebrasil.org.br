@@ -1,0 +1,14 @@
+<h1>Acessores de Imprensa :: Edição</h1>
+
+<% form_for(@journalist) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => "form", :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'Atualizar', :disable_with => "Atualizando.." %>
+  </p>
+<% end %>
+
+<%= link_to 'Exibir', @journalist %> |
+<%= link_to 'Voltar', journalists_path %>
